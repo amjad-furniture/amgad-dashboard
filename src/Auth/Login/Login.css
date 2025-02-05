@@ -1,0 +1,72 @@
+.loginConatiner {
+  font-family: "Tajawal", sans-serif;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  justify-content: end;
+  padding: 30px 20px 20px 50px;
+}
+.loginformContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  width: 50vw;
+}
+.form label {
+  margin: 10px 0px 10px 0px;
+}
+.form input {
+  outline: none;
+  border-radius: 5px;
+  height: 50px;
+  width: 350px;
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+.form button {
+  background-color: #260701;
+  color: #fff;
+  padding: 10px;
+  height: 50px;
+  width: 350px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+}
+.cover {
+  width: 636px;
+  height: 800px;
+  padding: 20px;
+}
+.fail-img {
+  text-align: center;
+  padding: 10px;
+}
+.fail-img img {
+  width: 100px;
+}
+.close-modal {
+  background: transparent;
+  border: 0px;
+  padding: 20px;
+  font-weight: bolder;
+}
+.success-img {
+  text-align: center;
+}
+.success-img img {
+  width: 150px;
+}
+.success-modal {
+  width: 450px;
+  padding: 20px;
+}
+.error-message {
+  font-size: 12px;
+  margin-top: 3px;
+}

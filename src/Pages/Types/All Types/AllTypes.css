@@ -1,0 +1,19 @@
+.alltypesContainer {
+  padding: 130px 50px;
+  font-family: Tajawal;
+}
+.showOptions{
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  width: 300px;
+  padding: 10px;
+  left: 175px;
+}
+.showOptions p{
+  text-align: right !important;
+  border-bottom: 1px solid lightgray;
+}
+.showOptions p:last-child{
+  border-bottom: none;
+}

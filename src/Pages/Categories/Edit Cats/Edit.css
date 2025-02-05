@@ -1,0 +1,46 @@
+.editContainer {
+  padding: 150px 40px;
+  font-family: Tajawal;
+}
+.editForm {
+  /* width: 900px; */
+  /* margin: auto; */
+}
+.editForm input , .input {
+  height: 50px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  outline: none;
+  width: 300px;
+}
+.input {
+  height: 50px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  outline: none;
+  width: 300px;
+}
+.message {
+  height: 150px !important;
+}
+.save-edit {
+  border: none;
+  border-radius: 10px;
+  background-color: #260701;
+  padding: 10px;
+  height: 50px;
+  width: 300px;
+  color: #fff;
+  font-weight: bolder;
+}
+.cancel-edit {
+  background-color: transparent;
+  border: 1px solid #260701;
+  font-weight: bolder;
+  margin-top: 20px;
+  height: 50px;
+  width: 300px;
+  border-radius: 10px;
+}

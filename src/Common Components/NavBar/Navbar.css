@@ -1,0 +1,17 @@
+.navbarContainer {
+  padding: 10px 30px 10px 0px;
+  font-family: Tajawal;
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.logoutOption {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  top: 46px;
+  right: 5px;
+  width: 250px;
+}

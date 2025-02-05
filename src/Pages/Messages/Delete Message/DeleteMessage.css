@@ -1,0 +1,25 @@
+.delete-option {
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  width: 200px;
+  left: 50px;
+}
+.delete-message {
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+  padding: 10px;
+  width: 300px;
+  color: #fff;
+  background-color: #cb0b0b;
+  font-weight: bolder;
+}
+.cancel-delete {
+  border: none;
+  background-color: transparent;
+  margin-top: 10px;
+  font-weight: bolder;
+}

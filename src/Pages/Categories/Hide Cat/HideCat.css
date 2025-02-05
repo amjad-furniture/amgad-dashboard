@@ -1,0 +1,9 @@
+.hideCat {
+  border: none;
+  background-color: #260701;
+  color: #fff;
+  height: 50px;
+  padding: 10px;
+  width: 300px;
+  border-radius: 10px;
+}

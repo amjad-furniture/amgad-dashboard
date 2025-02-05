@@ -1,0 +1,32 @@
+.confirmCodeContainer {
+  font-family: "Tajawal", sans-serif;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.confirmForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.confirmForm label {
+  margin: 10px 0px 10px 0px;
+}
+.confirmForm input {
+  margin: 0px 10px 0px 10px;
+  outline: none;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+.confirmForm button {
+  background-color: #260701;
+  color: #fff;
+  padding: 10px;
+  height: 50px;
+  width: 350px;
+  border: none;
+  border-radius: 5px;
+}
