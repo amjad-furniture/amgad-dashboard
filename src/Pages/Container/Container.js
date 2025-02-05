@@ -8,7 +8,7 @@ function Container() {
     async function fetchDashboardStatus() {
       try {
         const response = await fetch(
-          "http://104.248.251.235:8080/dashboard-stats/",
+          "https://api.amgadfurniture.comcom/dashboard-stats/",
           {
             method: "GET",
             headers: {
@@ -39,11 +39,11 @@ function Container() {
           <img
             src="/assets/images/Group 6356134.png"
             alt="icon"
-            width={"35px"}
+            width={ "35px" }
           />
         </div>
         <div className="mt-3">
-          <h4 className="mb-0 fw-bolder">{status.total_products}</h4>
+          <h4 className="mb-0 fw-bolder">{ status.total_products }</h4>
           <p>جميع المنتجات</p>
         </div>
       </div>
@@ -52,11 +52,11 @@ function Container() {
           <img
             src="/assets/images/Group 6356136.png"
             alt="icon"
-            width={"35px"}
+            width={ "35px" }
           />
         </div>
         <div className="mt-3">
-          <h4 className="mb-0 fw-bolder">{status.active_products}</h4>
+          <h4 className="mb-0 fw-bolder">{ status.active_products }</h4>
           <p>
             جميع المنتجات
             <br /> المعروضة
@@ -68,11 +68,11 @@ function Container() {
           <img
             src="/assets/images/Group 6356138.png"
             alt="icon"
-            width={"35px"}
+            width={ "35px" }
           />
         </div>
         <div className="mt-3">
-          <h4 className="mb-0 fw-bolder">{status.inactive_products}</h4>
+          <h4 className="mb-0 fw-bolder">{ status.inactive_products }</h4>
           <p>
             جميع المنتجات <br />
             المخفية
@@ -84,11 +84,11 @@ function Container() {
           <img
             src="/assets/images/Group 6356140.png"
             alt="icon"
-            width={"35px"}
+            width={ "35px" }
           />
         </div>
         <div className="mt-3">
-          <h4 className="mb-0 fw-bolder">{status.total_categories}</h4>
+          <h4 className="mb-0 fw-bolder">{ status.total_categories }</h4>
           <p>
             جميع الانواع <br />
             الحالية
@@ -100,17 +100,17 @@ function Container() {
           <img
             src="/assets/images/Group 6356138 (1).png"
             alt="icon"
-            width={"35px"}
+            width={ "35px" }
           />
         </div>
         <div className="mt-3">
           <h4 className="mb-0 fw-bolder">
-          {
-        status.category_stats &&
-        status.category_stats.find(
-          (category) => category.category_name === "Modern"
-        )?.product_count
-      }
+            {
+              status.category_stats &&
+              status.category_stats.find(
+                (category) => category.category_name === "Modern"
+              )?.product_count
+            }
           </h4>
           <p>نيو كلاسيك</p>
         </div>
@@ -120,17 +120,17 @@ function Container() {
           <img
             src="/assets/images/Group 6356136 (1).png"
             alt="icon"
-            width={"35px"}
+            width={ "35px" }
           />
         </div>
         <div className="mt-3">
           <h4 className="mb-0 fw-bolder">
-          {
-        status.category_stats &&
-        status.category_stats.find( 
-          (category) => category.category_name === "classic" 
-        )?.product_count
-      }
+            {
+              status.category_stats &&
+              status.category_stats.find(
+                (category) => category.category_name === "classic"
+              )?.product_count
+            }
           </h4>
           <p>كلاسيكي</p>
         </div>
@@ -141,11 +141,11 @@ function Container() {
           <img
             src="/assets/images/Group 6356140 (1).png"
             alt="icon"
-            width={"35px"}
+            width={ "35px" }
           />
         </div>
         <div className="mt-3">
-          <h4 className="mb-0 fw-bolder">{status.total_support_messages}</h4>
+          <h4 className="mb-0 fw-bolder">{ status.total_support_messages }</h4>
           <p>جميع الرسائل</p>
         </div>
       </div>
@@ -154,11 +154,11 @@ function Container() {
           <img
             src="/assets/images/Group 6356138 (2).png"
             alt="icon"
-            width={"35px"}
+            width={ "35px" }
           />
         </div>
         <div className="mt-3">
-          <h4 className="mb-0 fw-bolder">{status.new_support_messages}</h4>
+          <h4 className="mb-0 fw-bolder">{ status.new_support_messages }</h4>
           <p>رسائل جديدة</p>
         </div>
       </div>

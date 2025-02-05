@@ -10,7 +10,7 @@ function DeleteCat({ id, onDelete }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://104.248.251.235:8080/products/${id}/`,
+        `https://api.amgadfurniture.com/products/${id}/`,
         {
           method: "DELETE",
           headers: {
@@ -42,19 +42,19 @@ function DeleteCat({ id, onDelete }) {
     <div>
       <p
         className="fw-bolder text-danger mb-0 mt-0"
-        style={{ textAlign: "right", cursor: "pointer", border: "none" }}
-        onClick={() => setShowModal(true)}
+        style={ { textAlign: "right", cursor: "pointer", border: "none" } }
+        onClick={ () => setShowModal(true) }
       >
         حذف المنتج
       </p>
-      {showModal && (
-        <Modal isOpen={showModal}>
-          <div style={{ width: "380px", padding: "30px" }}>
+      { showModal && (
+        <Modal isOpen={ showModal }>
+          <div style={ { width: "380px", padding: "30px" } }>
             <div>
               <img
                 src="/assets/images/Frame 6356147.png"
                 alt="delete product"
-                width={"140px"}
+                width={ "140px" }
               />
             </div>
             <p className="border-0 fw-bolder mt-4 mb-4 fs-5">
@@ -62,8 +62,8 @@ function DeleteCat({ id, onDelete }) {
             </p>
             <div className="d-flex flex-column align-items-center justify-content-center">
               <button
-                onClick={handleDelete}
-                style={{
+                onClick={ handleDelete }
+                style={ {
                   width: "300px",
                   border: "none",
                   borderRadius: "10px",
@@ -71,26 +71,26 @@ function DeleteCat({ id, onDelete }) {
                   color: "#fff",
                   backgroundColor: "#cb0b0b",
                   fontWeight: "bolder",
-                }}
-                disabled={loading}
+                } }
+                disabled={ loading }
               >
-                {loading ? "جاري التحميل..." : "نعم، حذف المنتج"}
+                { loading ? "جاري التحميل..." : "نعم، حذف المنتج" }
               </button>
               <button
-                style={{
+                style={ {
                   border: "none",
                   fontWeight: "bolder",
                   marginTop: "10px",
                   backgroundColor: "transparent",
-                }}
-                onClick={() => setShowModal(false)}
+                } }
+                onClick={ () => setShowModal(false) }
               >
                 الغاء
               </button>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
     </div>
   );
 }

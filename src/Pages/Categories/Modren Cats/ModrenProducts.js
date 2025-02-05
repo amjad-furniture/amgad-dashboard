@@ -15,7 +15,7 @@ function ModrenProducts() {
     async function getAllProducts() {
       setLoading(true);
       try {
-        const response = await fetch("http://104.248.251.235:8080/products/", {
+        const response = await fetch("https://api.amgadfurniture.comcom/products/", {
           method: "GET",
           headers: {
             accept: "application/json",
@@ -68,19 +68,19 @@ function ModrenProducts() {
       <div className="d-flex align-items-center justify-content-between">
         <div
           className="d-flex align-items-center"
-          style={{
+          style={ {
             backgroundColor: "#F5F5DC",
             border: "1px solid lightgray",
             borderRadius: "30px",
             padding: "0px 20px 0px 20px",
             width: "200px",
-            height:"45px"
-          }}
+            height: "45px"
+          } }
         >
           <img
             src="/assets/images/sofa-livingroom-svgrepo-com (1).png"
             alt="product classic"
-            width={'20px'}
+            width={ '20px' }
             className="ms-2"
           />
           <p className="mt-3 me-2 ms-2 fw-bolder">نيو كلاسيك</p>
@@ -91,36 +91,36 @@ function ModrenProducts() {
           </label>
           <select
             id="sortOrder"
-            value={sortOrder}
-            onChange={(e) => handleSort(e.target.value)}
+            value={ sortOrder }
+            onChange={ (e) => handleSort(e.target.value) }
             className="form-select"
-            style={{ width: "200px", display: "inline-block" }}
+            style={ { width: "200px", display: "inline-block" } }
           >
             <option value="asc">من الأقل إلى الأعلى</option>
             <option value="desc">من الأعلى إلى الأقل</option>
           </select>
         </div>
       </div>
-      {error ? (
+      { error ? (
         <p
           className="text-danger"
-          style={{
+          style={ {
             textAlign: "center",
             fontSize: "35px",
             margin: "100px 350px ",
             fontFamily: "Amiri",
-          }}
+          } }
         >
           حدث خطأ أثناء تحميل البيانات.....
         </p>
       ) : loading ? (
         <p
-          style={{
+          style={ {
             textAlign: "center",
             fontSize: "35px",
             margin: "100px 350px ",
             fontFamily: "Amiri",
-          }}
+          } }
         >
           جاري تحميل البيانات.....
         </p>
@@ -143,53 +143,53 @@ function ModrenProducts() {
               </tr>
             </thead>
             <tbody>
-              {products.map((product, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{product.name}</td>
+              { products.map((product, index) => (
+                <tr key={ index }>
+                  <td>{ index + 1 }</td>
+                  <td>{ product.name }</td>
                   <td>
-                    {product.category ? product.category.name : "No Category"}
+                    { product.category ? product.category.name : "No Category" }
                   </td>
-                  <td>{product.stock}</td>
-                  <td>{product.price}</td>
-                  <td>{product.is_active ? "معروض" : "مخفي"}</td>
+                  <td>{ product.stock }</td>
+                  <td>{ product.price }</td>
+                  <td>{ product.is_active ? "معروض" : "مخفي" }</td>
                   <td className="text-center position-relative">
                     <img
                       src="/assets/images/Group 6356159.png"
                       alt="options"
-                      style={{ cursor: "pointer" }}
-                      onClick={() =>
+                      style={ { cursor: "pointer" } }
+                      onClick={ () =>
                         setOptions(options === product.id ? null : product.id)
                       }
                     />
-                    {options === product.id && (
+                    { options === product.id && (
                       <div className="allOptions p-3">
                         <p
                           className="fw-bolder pb-2"
-                          style={{ textAlign: "right", cursor: "pointer" }}
-                          onClick={() =>
+                          style={ { textAlign: "right", cursor: "pointer" } }
+                          onClick={ () =>
                             navigate("/HomePage/EditProductForm", { state: { product } })
                           }
                         >
                           تعديل البيانات
                         </p>
                         <HideCat
-                          id={product.id}
-                          isActive={product.is_active}
-                          onStatusChange={(newStatus) =>
+                          id={ product.id }
+                          isActive={ product.is_active }
+                          onStatusChange={ (newStatus) =>
                             updateProductStatus(product.id, newStatus)
                           }
                         />
-                        <DeleteCat id={product.id} />
+                        <DeleteCat id={ product.id } />
                       </div>
-                    )}
+                    ) }
                   </td>
                 </tr>
-              ))}
+              )) }
             </tbody>
           </table>
         </div>
-      )}
+      ) }
     </div>
   );
 }

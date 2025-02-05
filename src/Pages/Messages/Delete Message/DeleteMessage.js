@@ -8,7 +8,7 @@ function DeleteMessage({ id, onDelete }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://104.248.251.235:8080/support/${id}/`,
+        `https://api.amgadfurniture.comcom/support/${id}/`,
         {
           method: "DELETE",
           headers: {
@@ -38,28 +38,28 @@ function DeleteMessage({ id, onDelete }) {
     <div>
       <p
         className="fw-bolder text-danger mt-3 me-2"
-        onClick={() => {
+        onClick={ () => {
           console.log("فتح المودال");
           setShowModal(true);
-        }}
-        style={{ cursor: "pointer", textAlign: "right" }}
+        } }
+        style={ { cursor: "pointer", textAlign: "right" } }
       >
         حذف الرسالة
       </p>
 
-      {showModal && (
-        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-          <div className="" style={{ width: "400px" }}>
+      { showModal && (
+        <Modal isOpen={ showModal } onClose={ () => setShowModal(false) }>
+          <div className="" style={ { width: "400px" } }>
             <div>
               <button
                 className="fs-5"
-                onClick={() => setShowModal(false)}
-                style={{
+                onClick={ () => setShowModal(false) }
+                style={ {
                   float: "right",
                   border: "none",
                   background: "transparent",
                   padding: "20px",
-                }}
+                } }
               >
                 X
               </button>
@@ -69,18 +69,18 @@ function DeleteMessage({ id, onDelete }) {
                 src="/assets/images/Frame 6356147.png"
                 alt="delete message"
                 className="mt-5 ms-5"
-                width={"150px"}
+                width={ "150px" }
               />
             </div>
             <p className="text-center fw-bolder mt-4 mb-3 fs-5 p-3">
               هل انت متأكد من حذف الرسالة؟
             </p>
             <div className="d-flex flex-column align-items-center justify-content-center">
-              <button onClick={deleteMessage} className="delete-message">
-                {loading ? "جاري التحميل..." : "حذف الرسالة"}
+              <button onClick={ deleteMessage } className="delete-message">
+                { loading ? "جاري التحميل..." : "حذف الرسالة" }
               </button>
               <button
-                onClick={() => setShowModal(false)}
+                onClick={ () => setShowModal(false) }
                 className="cancel-delete mb-4"
               >
                 الغاء
@@ -88,7 +88,7 @@ function DeleteMessage({ id, onDelete }) {
             </div>
           </div>
         </Modal>
-      )}
+      ) }
     </div>
   );
 }

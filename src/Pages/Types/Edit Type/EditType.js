@@ -23,7 +23,7 @@ function EditType() {
       }
 
       const response = await fetch(
-        `http://104.248.251.235:8080/categories/${category.id}/`,
+        `https://api.amgadfurniture.com/categories/${category.id}/`,
         {
           method: "PATCH",
           headers: {
@@ -61,13 +61,13 @@ function EditType() {
     <div className="editContainer">
       <div
         className="d-flex align-items-center"
-        style={{
+        style={ {
           backgroundColor: "#F5F5DC",
           border: "1px solid lightgray",
           borderRadius: "30px",
           padding: "0px 20px",
           width: "200px",
-        }}
+        } }
       >
         <svg
           width="25"
@@ -112,8 +112,8 @@ function EditType() {
         <p className="mt-3 me-2 ms-2 fw-bolder">تعديل النوع</p>
       </div>
       <div className="addTypeForm">
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-          {({ setFieldValue }) => (
+        <Formik initialValues={ initialValues } onSubmit={ handleSubmit }>
+          { ({ setFieldValue }) => (
             <Form>
               <div className="d-flex mb-4">
                 <div className="ms-5">
@@ -138,45 +138,45 @@ function EditType() {
                   name="icon"
                   type="file"
                   accept="image/*"
-                  onChange={(event) => {
+                  onChange={ (event) => {
                     const file = event.target.files[0];
                     setFieldValue("icon", file);
                     setIconPreview(URL.createObjectURL(file));
-                  }}
+                  } }
                 />
-                {iconPreview && (
+                { iconPreview && (
                   <div className="icon-preview mt-3">
                     <img
-                      src={iconPreview}
+                      src={ iconPreview }
                       alt="Preview"
-                      style={{ maxWidth: "100px", borderRadius: "8px" }}
+                      style={ { maxWidth: "100px", borderRadius: "8px" } }
                     />
                   </div>
-                )}
+                ) }
               </div>
               <div className="text-center">
                 <button
                   type="submit"
-                  disabled={loading}
-                  style={{
+                  disabled={ loading }
+                  style={ {
                     width: "300px",
                     border: "0px",
                     height: "50px",
                     borderRadius: "10px",
                     backgroundColor: "#260701",
                     color: "#fff",
-                  }}
+                  } }
                 >
-                  {loading ? "جاري التحميل..." : "حفظ"}
+                  { loading ? "جاري التحميل..." : "حفظ" }
                 </button>
               </div>
             </Form>
-          )}
+          ) }
         </Formik>
       </div>
-      {showModal && (
-        <Modal isOpen={showModal}>
-          <div style={{ padding: "20px" }}>
+      { showModal && (
+        <Modal isOpen={ showModal }>
+          <div style={ { padding: "20px" } }>
             <div className="text-center">
               <img
                 src="/assets/images/success-achievement-award-medal-winner-svgrepo-com 1.png"
@@ -186,26 +186,26 @@ function EditType() {
             <div>
               <p className="text-center fw-bolder">تم تعديل هذا النوع بنجاح</p>
               <button
-                onClick={() => navigate("/HomePage/AllTypes")}
-                style={{
+                onClick={ () => navigate("/HomePage/AllTypes") }
+                style={ {
                   border: "0px",
                   height: "50px",
                   width: "300px",
                   borderRadius: "10px",
                   color: "#fff",
                   backgroundColor: "#260701",
-                }}
+                } }
               >
-                {loading ? "جاري التحميل..." : "العودة الي صفحة جميع الأنواع"}
+                { loading ? "جاري التحميل..." : "العودة الي صفحة جميع الأنواع" }
               </button>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
 
-      {showModalError && (
-        <Modal isOpen={showModalError}>
-          <div style={{ padding: "20px" }}>
+      { showModalError && (
+        <Modal isOpen={ showModalError }>
+          <div style={ { padding: "20px" } }>
             <div className="text-center">
               <img
                 src="/assets/images/material-symbols_sms-failed-outline-rounded.png"
@@ -217,22 +217,22 @@ function EditType() {
                 حدث خطأ أثناء تعديل هذا النوع !
               </p>
               <button
-                onClick={() => navigate("/HomePage/AllTypes")}
-                style={{
+                onClick={ () => navigate("/HomePage/AllTypes") }
+                style={ {
                   border: "0px",
                   height: "50px",
                   width: "300px",
                   borderRadius: "10px",
                   color: "#fff",
                   backgroundColor: "#260701",
-                }}
+                } }
               >
-                {loading ? "جاري التحميل..." : "العودة الي صفحة جميع الأنواع"}
+                { loading ? "جاري التحميل..." : "العودة الي صفحة جميع الأنواع" }
               </button>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
     </div>
   );
 }

@@ -35,7 +35,7 @@ function EditProductForm() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://104.248.251.235:8080/categories")
+    fetch("https://api.amgadfurniture.com/categories")
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
@@ -107,7 +107,7 @@ function EditProductForm() {
       });
 
       const response = await fetch(
-        `http://104.248.251.235:8080/products/${state.product.id}/`,
+        `https://api.amgadfurniture.com/products/${state.product.id}/`,
         {
           method: "PATCH",
           headers: {
@@ -143,14 +143,14 @@ function EditProductForm() {
       <div className="d-flex align-items-center justify-content-between">
         <div
           className="d-flex align-items-center mb-3"
-          style={{
+          style={ {
             backgroundColor: "#F5F5DC",
             border: "1px solid lightgray",
             borderRadius: "30px",
             padding: "0px 20px 0px 20px",
             width: "200px",
             height: "45px",
-          }}
+          } }
         >
           <svg
             width="24"
@@ -179,7 +179,7 @@ function EditProductForm() {
         </div>
       </div>
 
-      <form className="editForm" onSubmit={handleSubmit}>
+      <form className="editForm" onSubmit={ handleSubmit }>
         <div className="fw-bolder mt-4">
           <p>المعلومات الاساسية : </p>
         </div>
@@ -189,30 +189,30 @@ function EditProductForm() {
             <input
               type="text"
               name="name"
-              value={productData.name}
-              onChange={handleChange}
+              value={ productData.name }
+              onChange={ handleChange }
               required
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               مثال: صالون كبير
             </p>
           </div>
 
-          <div className="me-5" style={{margin:"-55px 0px 0px 0px"}}>
+          <div className="me-5" style={ { margin: "-55px 0px 0px 0px" } }>
             <label className="d-block mb-2">النوع</label>
             <select
               className="input"
               name="category_id"
-              value={productData.category_id}
-              onChange={handleChange}
+              value={ productData.category_id }
+              onChange={ handleChange }
               required
             >
               <option value="">اختر النوع</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
+              { categories.map((category) => (
+                <option key={ category.id } value={ category.id }>
+                  { category.name }
                 </option>
-              ))}
+              )) }
             </select>
           </div>
         </div>
@@ -221,11 +221,11 @@ function EditProductForm() {
             <label className="d-block mb-2 mt-4">السعر بالجنيه المصري</label>
             <input
               name="price"
-              value={productData.price}
-              onChange={handleChange}
+              value={ productData.price }
+              onChange={ handleChange }
               required
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               ارقام فقط
             </p>
           </div>
@@ -234,10 +234,10 @@ function EditProductForm() {
             <label className="d-block mt-4 mb-2">عدد القطع</label>
             <input
               name="stock"
-              value={productData.stock}
-              onChange={handleChange}
+              value={ productData.stock }
+              onChange={ handleChange }
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               ارقام فقط
             </p>
           </div>
@@ -247,15 +247,15 @@ function EditProductForm() {
           <input
             className="message"
             name="description"
-            value={productData.description}
-            onChange={handleChange}
+            value={ productData.description }
+            onChange={ handleChange }
             rows="5"
           />
-          <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+          <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
             كتابة جمل وصفية - الالوان المتاحة
           </p>
         </div>
-        <hr className="mt-5" style={{ position: "relative", zIndex: "-1" }} />
+        <hr className="mt-5" style={ { position: "relative", zIndex: "-1" } } />
         <div>
           <p className="fw-bolder">تفاصيل : </p>
         </div>
@@ -264,11 +264,11 @@ function EditProductForm() {
             <label className="mb-2 d-block">خامة الخشب : </label>
             <input
               name="wood_material"
-              value={productData.wood_material}
-              onChange={handleChange}
+              value={ productData.wood_material }
+              onChange={ handleChange }
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
-              {" "}
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
+              { " " }
               مثال: زان
             </p>
           </div>
@@ -276,10 +276,10 @@ function EditProductForm() {
             <label className="mb-2 d-block">خامة القماش : </label>
             <input
               name="fabric_material"
-              value={productData.fabric_material}
-              onChange={handleChange}
+              value={ productData.fabric_material }
+              onChange={ handleChange }
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               مثال: كتان
             </p>
           </div>
@@ -289,10 +289,10 @@ function EditProductForm() {
             <label className="mb-2 mt-4 d-block">خامة التنجيد : </label>
             <input
               name="upholstery_material"
-              value={productData.upholstery_material}
-              onChange={handleChange}
+              value={ productData.upholstery_material }
+              onChange={ handleChange }
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               مثال: اسفنج عالي الكثافة
             </p>
           </div>
@@ -300,12 +300,12 @@ function EditProductForm() {
             <label className="mb-2 mt-4 d-block"> عدد شهور الضمان : </label>
             <input
               name="warranty_months"
-              value={productData.warranty_months}
-              onChange={handleChange}
+              value={ productData.warranty_months }
+              onChange={ handleChange }
             />
           </div>
         </div>
-        <hr className="mt-5" style={{ position: "relative", zIndex: "-1" }} />
+        <hr className="mt-5" style={ { position: "relative", zIndex: "-1" } } />
         <div>
           <p className="fw-bolder">المواصفات : </p>
         </div>
@@ -314,10 +314,10 @@ function EditProductForm() {
             <label className="mb-2 d-block">الطول ( cm )</label>
             <input
               name="length_cm"
-              value={productData.length_cm}
-              onChange={handleChange}
+              value={ productData.length_cm }
+              onChange={ handleChange }
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               ارقام فقط
             </p>
           </div>
@@ -325,10 +325,10 @@ function EditProductForm() {
             <label className="mb-2  d-block">العرض ( cm )</label>
             <input
               name="width_cm"
-              value={productData.width_cm}
-              onChange={handleChange}
+              value={ productData.width_cm }
+              onChange={ handleChange }
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               ارقام فقط
             </p>
           </div>
@@ -338,10 +338,10 @@ function EditProductForm() {
             <label className="mb-2 mt-4 d-block">الارتفاع ( cm )</label>
             <input
               name="height_cm"
-              value={productData.height_cm}
-              onChange={handleChange}
+              value={ productData.height_cm }
+              onChange={ handleChange }
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               ارقام فقط
             </p>
           </div>
@@ -349,10 +349,10 @@ function EditProductForm() {
             <label className="mb-2 mt-4 d-block">العمق ( cm )</label>
             <input
               name="depth_cm"
-              value={productData.depth_cm}
-              onChange={handleChange}
+              value={ productData.depth_cm }
+              onChange={ handleChange }
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               ارقام فقط
             </p>
           </div>
@@ -362,10 +362,10 @@ function EditProductForm() {
             <label className="mb-2 mt-4 d-block">اللون</label>
             <input
               name="color"
-              value={productData.color}
-              onChange={handleChange}
+              value={ productData.color }
+              onChange={ handleChange }
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               ادخل لون للمنتج
             </p>
           </div>
@@ -373,22 +373,22 @@ function EditProductForm() {
             <label className="mb-2 mt-4 d-block">بلد المنشأ</label>
             <input
               name="country_of_origin"
-              value={productData.country_of_origin}
-              onChange={handleChange}
+              value={ productData.country_of_origin }
+              onChange={ handleChange }
             />
-            <p className="text-secondary mt-2" style={{ fontSize: "14px" }}>
+            <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               ادخل بلد المنشأ مثال : مصر
             </p>
           </div>
         </div>
-        <hr className="mt-5" style={{ position: "relative", zIndex: "-1" }} />
+        <hr className="mt-5" style={ { position: "relative", zIndex: "-1" } } />
         <div className="">
           <label className="mb-2 mt-4 d-block">الصور</label>
           <input
             type="file"
             name="uploaded_images"
             multiple
-            onChange={handleFileChange}
+            onChange={ handleFileChange }
           />
         </div>
         <div className="">
@@ -396,7 +396,7 @@ function EditProductForm() {
           <input
             type="file"
             name="product_video"
-            onChange={(e) =>
+            onChange={ (e) =>
               setProductData((prevData) => ({
                 ...prevData,
                 product_video: e.target.files[0],
@@ -407,11 +407,11 @@ function EditProductForm() {
         <div className="d-flex align-items-center mt-4">
           <label className="ms-3">الحالة</label>
           <input
-            style={{ width: "20px" }}
+            style={ { width: "20px" } }
             type="checkbox"
             name="is_active"
-            checked={productData.is_active}
-            onChange={(e) =>
+            checked={ productData.is_active }
+            onChange={ (e) =>
               handleChange({
                 target: { name: "is_active", value: e.target.checked },
               })
@@ -422,11 +422,11 @@ function EditProductForm() {
         <div className="d-flex align-items-center">
           <label className="ms-3">منتج أكثر مبيعا ؟</label>
           <input
-            style={{ width: "20px" }}
+            style={ { width: "20px" } }
             type="checkbox"
             name="is_best_seller"
-            checked={productData.is_best_seller}
-            onChange={(e) =>
+            checked={ productData.is_best_seller }
+            onChange={ (e) =>
               handleChange({
                 target: { name: "is_best_seller", value: e.target.checked },
               })
@@ -437,8 +437,8 @@ function EditProductForm() {
         <div className="text-center">
           <button
             type="submit"
-            disabled={loading}
-            style={{
+            disabled={ loading }
+            style={ {
               width: "300px",
               height: "50px",
               padding: "10px",
@@ -446,21 +446,21 @@ function EditProductForm() {
               backgroundColor: "#260701",
               borderRadius: "10px",
               margin: "0px 200px 0px 0px",
-            }}
+            } }
           >
-            {loading ? "جاري التحميل...." : "حفظ"}
+            { loading ? "جاري التحميل...." : "حفظ" }
           </button>
         </div>
       </form>
 
-      {showModal && (
-        <Modal isOpen={showModal}>
-          <div className="" style={{ width: "400px", padding: "20px" }}>
+      { showModal && (
+        <Modal isOpen={ showModal }>
+          <div className="" style={ { width: "400px", padding: "20px" } }>
             <div className="text-center">
               <img
                 src="/assets/images/success-achievement-award-medal-winner-svgrepo-com 1.png"
                 alt="success"
-                width={"120px"}
+                width={ "120px" }
               />
             </div>
             <p className="text-center fw-bolder fs-5 mt-4">
@@ -469,26 +469,26 @@ function EditProductForm() {
             <div className="text-center">
               <button
                 className="mt-4 fw-bolder"
-                style={{
+                style={ {
                   width: "300px",
                   height: "50px",
                   padding: "10px",
                   color: "#fff",
                   backgroundColor: "#260701",
                   borderRadius: "10px",
-                }}
-                onClick={() => navigate("/HomePage/AllCats")}
+                } }
+                onClick={ () => navigate("/HomePage/AllCats") }
               >
                 الرجوع الي صفحة جميع المنتجات
               </button>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
 
-      {showModalError && (
-        <Modal isOpen={showModalError}>
-          <div className="" style={{ width: "400px", padding: "30px" }}>
+      { showModalError && (
+        <Modal isOpen={ showModalError }>
+          <div className="" style={ { width: "400px", padding: "30px" } }>
             <div className="text-center">
               <img
                 src="/assets/images/material-symbols_sms-failed-outline-rounded.png"
@@ -501,22 +501,22 @@ function EditProductForm() {
             <div className="text-center">
               <button
                 className="mt-4 fw-bolder"
-                style={{
+                style={ {
                   width: "300px",
                   height: "50px",
                   padding: "10px",
                   color: "#fff",
                   backgroundColor: "#260701",
                   borderRadius: "10px",
-                }}
-                onClick={() => navigate("/HomePage/AllCats")}
+                } }
+                onClick={ () => navigate("/HomePage/AllCats") }
               >
                 الرجوع الي صفحة جميع المنتجات
               </button>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
     </div>
   );
 }

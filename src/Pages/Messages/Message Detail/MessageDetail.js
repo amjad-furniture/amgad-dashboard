@@ -8,7 +8,7 @@ function MessageDetail() {
     async function getDetails() {
       try {
         const response = await fetch(
-          `http://104.248.251.235:8080/support/${id}/`,
+          `https://api.amgadfurniture.com/support/${id}/`,
           {
             method: "GET",
             headers: {
@@ -36,14 +36,14 @@ function MessageDetail() {
     <div className="messageDetailsConatiner">
       <div
         className="d-flex align-items-center"
-        style={{
+        style={ {
           backgroundColor: "#F5F5DC",
           border: "1px solid lightgray",
           borderRadius: "30px",
           padding: "0px 20px 0px 20px",
           width: "200px",
           height: "45px",
-        }}
+        } }
       >
         <svg
           width="24"
@@ -95,36 +95,36 @@ function MessageDetail() {
 
       <div className="mt-5">
         <div className="d-flex align-items-center justify-content-between">
-          <p className="fw-bolder" style={{ fontSize: "18px" }}>
+          <p className="fw-bolder" style={ { fontSize: "18px" } }>
             الاسم:
           </p>
-          <p style={{ fontSize: "18px" }}>{messageDetail.name}</p>
+          <p style={ { fontSize: "18px" } }>{ messageDetail.name }</p>
         </div>
         <div className="d-flex align-items-center justify-content-between">
-          <p className="fw-bolder" style={{ fontSize: "18px" }}>
+          <p className="fw-bolder" style={ { fontSize: "18px" } }>
             رقم التليفون:
           </p>
-          <p style={{ fontSize: "18px" }}>{messageDetail.phone_number}</p>
+          <p style={ { fontSize: "18px" } }>{ messageDetail.phone_number }</p>
         </div>
         <div className="d-flex align-items-center justify-content-between">
-          <p className="fw-bolder" style={{ fontSize: "18px" }}>
+          <p className="fw-bolder" style={ { fontSize: "18px" } }>
             البريد الالكتروني:
           </p>
-          <p style={{ fontSize: "18px" }}>{messageDetail.email}</p>
+          <p style={ { fontSize: "18px" } }>{ messageDetail.email }</p>
         </div>
         <div className="d-flex align-items-center justify-content-between">
-          <p className="fw-bolder" style={{ fontSize: "18px" }}>
+          <p className="fw-bolder" style={ { fontSize: "18px" } }>
             تاريخ ووقت الرسالة:
           </p>
-          <p style={{ fontSize: "18px", margin: "0px 30px 0px 0px" }}>
-            {messageDetail.created_at}
+          <p style={ { fontSize: "18px", margin: "0px 30px 0px 0px" } }>
+            { messageDetail.created_at }
           </p>
         </div>
         <div className="d-flex align-items-center justify-content-between">
-          <p className="fw-bolder" style={{ fontSize: "18px" }}>
+          <p className="fw-bolder" style={ { fontSize: "18px" } }>
             محتوى الرسالة:
           </p>
-          <p style={{ fontSize: "18px" }}>{messageDetail.message}</p>
+          <p style={ { fontSize: "18px" } }>{ messageDetail.message }</p>
         </div>
       </div>
     </div>

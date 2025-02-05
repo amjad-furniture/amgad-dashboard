@@ -30,7 +30,7 @@ function Login() {
       password: values["password"],
     };
     try {
-      const response = await fetch("http://104.248.251.235:8080/auth/login", {
+      const response = await fetch("https://api.amgadfurniture.com/auth/login", {
         method: "POST",
         headers: {
           accept: "application/json",
@@ -45,14 +45,14 @@ function Login() {
         console.log("Login success:", result);
         localStorage.setItem("access token", result.data.access);
         localStorage.setItem("username", result.data.name);
-        console.log(result.data.username)
+        console.log(result.data.username);
         setShowModal(true);
         setModalError(false);
         setTimeout(() => {
           navigate("/HomePage");
         }, 2500);
       } else {
-        setLoading(false)
+        setLoading(false);
         console.error("Login failed:", result.message);
         setShowModal(false);
         setModalError(true);
@@ -80,14 +80,14 @@ function Login() {
           </div>
           <div>
             <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={handleSubmit}
+              initialValues={ initialValues }
+              validationSchema={ validationSchema }
+              onSubmit={ handleSubmit }
             >
               <Form className="form">
                 <div>
                   <label className="d-block" htmlFor="username">
-                     اسم المستخدم
+                    اسم المستخدم
                   </label>
                   <Field
                     placeholder="البريد الالكتروني*"
@@ -108,34 +108,34 @@ function Login() {
                     className=""
                     name="password"
                     id="password"
-                    type={show ? "text" : "password"}
+                    type={ show ? "text" : "password" }
                     placeholder="كلمة السر"
                   />
                   <span
-                    style={{
+                    style={ {
                       position: "absolute",
                       top: "58px",
                       left: "10px",
                       transform: "translateY(-50%)",
                       cursor: "pointer",
-                    }}
-                    onClick={() => setShow(!show)}
+                    } }
+                    onClick={ () => setShow(!show) }
                   >
-                    {!show ? (
+                    { !show ? (
                       <img
                         src="/assets/images/close eye.png"
                         alt="hide password"
-                        width={"20px"}
-                        height={"20px"}
+                        width={ "20px" }
+                        height={ "20px" }
                       />
                     ) : (
                       <img
                         src="/assets/images/open eye.png"
                         alt="show password"
-                        width={"20px"}
-                        height={"20px"}
+                        width={ "20px" }
+                        height={ "20px" }
                       />
-                    )}
+                    ) }
                   </span>
                   <ErrorMessage
                     name="password"
@@ -146,15 +146,15 @@ function Login() {
                 <div className="d-flex justify-content-end">
                   <p
                     className="mt-3"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => navigate("/NewPassword")}
+                    style={ { cursor: "pointer" } }
+                    onClick={ () => navigate("/NewPassword") }
                   >
                     هل تريد تغير كلمة السر؟
                   </p>
                 </div>
                 <div className="mt-3">
-                  <button type="submit" style={{ cursor: "pointer" }}>
-                    {loading ? "جاري التحميل ..... " : "تسجيل الدخول"}
+                  <button type="submit" style={ { cursor: "pointer" } }>
+                    { loading ? "جاري التحميل ..... " : "تسجيل الدخول" }
                   </button>
                 </div>
               </Form>
@@ -172,27 +172,27 @@ function Login() {
         </div>
       </aside>
 
-      {showModal && (
-        <Modal isOpen={showModal}>
+      { showModal && (
+        <Modal isOpen={ showModal }>
           <div className="success-modal">
             <div>
             </div>
             <div className="success-img">
-              <img style={{padding:"12px"}} src="/assets/images/success-achievement-award-medal-winner-svgrepo-com 1.png" alt="done" />
+              <img style={ { padding: "12px" } } src="/assets/images/success-achievement-award-medal-winner-svgrepo-com 1.png" alt="done" />
             </div>
             <h4 className=" text-center fw-bolder">
               لقد تم تسجيل دخولكم بنجاح
             </h4>
           </div>
         </Modal>
-      )}
+      ) }
 
-      {modalError && (
-        <Modal isOpen={modalError}>
+      { modalError && (
+        <Modal isOpen={ modalError }>
           <div>
             <div>
               <button
-                onClick={() => setModalError(false)}
+                onClick={ () => setModalError(false) }
                 className="close-modal"
               >
                 X
@@ -206,7 +206,7 @@ function Login() {
             </p>
           </div>
         </Modal>
-      )}
+      ) }
     </div>
   );
 }

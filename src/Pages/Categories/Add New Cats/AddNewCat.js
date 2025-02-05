@@ -93,7 +93,7 @@ function AddNewCat() {
     }
 
     try {
-      const response = await fetch("http://104.248.251.235:8080/products/", {
+      const response = await fetch("https://api.amgadfurniture.comcom/products/", {
         method: "POST",
         headers: {
           Authorization: localStorage.getItem("access token"),
@@ -126,7 +126,7 @@ function AddNewCat() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://104.248.251.235:8080/categories/");
+        const response = await fetch("https://api.amgadfurniture.com/categories/");
         const data = await response.json();
         if (response.ok) {
           setCategories(data.data);
@@ -142,41 +142,41 @@ function AddNewCat() {
 
   return (
     <div className="editContainer">
-      {error && (
+      { error && (
         <p
           className="text-danger"
-          style={{
+          style={ {
             textAlign: "center",
             fontSize: "30px",
             margin: "100px 350px ",
             fontFamily: "Amiri",
-          }}
+          } }
         >
-          {error}
+          { error }
         </p>
-      )}
-      {!error && (
+      ) }
+      { !error && (
         <>
           <div
             className="d-flex align-items-center"
-            style={{
+            style={ {
               backgroundColor: "#F5F5DC",
               border: "1px solid lightgray",
               borderRadius: "30px",
               padding: "0px 20px 0px 20px",
               width: "200px",
               height: "43px",
-            }}
+            } }
           >
             <p className="mt-3 fw-bolder">+</p>
             <p className="mt-3 me-2 ms-2 fw-bolder"> اضافة منتج جديد</p>
           </div>
           <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
+            initialValues={ initialValues }
+            validationSchema={ validationSchema }
+            onSubmit={ handleSubmit }
           >
-            {({ setFieldValue }) => (
+            { ({ setFieldValue }) => (
               <Form className="addForm mt-5">
                 <div>
                   <p className="fw-bolder">المعلومات الاساسية : </p>
@@ -192,7 +192,7 @@ function AddNewCat() {
                     />
                     <p
                       className="mt-2 text-secondary"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       مثال: صالون كبير
                     </p>
@@ -206,11 +206,11 @@ function AddNewCat() {
                       className="form-control selectOption"
                     >
                       <option value="">إختر نوع المنتج</option>
-                      {categories.map((category) => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
+                      { categories.map((category) => (
+                        <option key={ category.id } value={ category.id }>
+                          { category.name }
                         </option>
-                      ))}
+                      )) }
                     </Field>
                     <ErrorMessage
                       name="category_id"
@@ -219,7 +219,7 @@ function AddNewCat() {
                     />
                   </div>
                 </div>
-                {/* 2 */}
+                {/* 2 */ }
                 <div className="d-flex  justify-content-between">
                   <div className="form-group ms-5">
                     <label className="mt-4 mb-2">السعر بالجنيه المصري</label>
@@ -235,7 +235,7 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       ارقام فقط
                     </p>
@@ -254,7 +254,7 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       ارقام فقط
                     </p>
@@ -270,15 +270,15 @@ function AddNewCat() {
                   />
                   <p
                     className="text-secondary mt-2"
-                    style={{ fontSize: "14px" }}
+                    style={ { fontSize: "14px" } }
                   >
                     كتابة جمل وصفية - الالوان المتاحة
                   </p>
                 </div>
-                {/* 3 */}
+                {/* 3 */ }
                 <hr
                   className="mt-5"
-                  style={{ position: "relative", zIndex: "-1" }}
+                  style={ { position: "relative", zIndex: "-1" } }
                 />
                 <div>
                   <p className="fw-bolder">تفاصيل : </p>
@@ -298,7 +298,7 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       مثال: زان
                     </p>
@@ -318,13 +318,13 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       مثال: كتان
                     </p>
                   </div>
                 </div>
-                {/* 4 */}
+                {/* 4 */ }
                 <div className="d-flex justify-content-between ">
                   <div className="form-group ms-4">
                     <label className="mt-4 mb-2">خامة التنجيد</label>
@@ -340,7 +340,7 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       مثال: اسفنج عالي الكثافة
                     </p>
@@ -360,7 +360,7 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       ارقام فقط
                     </p>
@@ -368,7 +368,7 @@ function AddNewCat() {
                 </div>
                 <hr
                   className="mt-5"
-                  style={{ position: "relative", zIndex: "-1" }}
+                  style={ { position: "relative", zIndex: "-1" } }
                 />
                 <div>
                   <p className="fw-bolder">المواصفات : </p>
@@ -388,7 +388,7 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       ارقام فقط
                     </p>
@@ -408,7 +408,7 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       ارقام فقط
                     </p>
@@ -429,7 +429,7 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       ارقام فقط
                     </p>
@@ -449,7 +449,7 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       ارقام فقط
                     </p>
@@ -466,7 +466,7 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       ادخال لون للمنتج
                     </p>
@@ -486,7 +486,7 @@ function AddNewCat() {
                     />
                     <p
                       className="text-secondary mt-2"
-                      style={{ fontSize: "14px" }}
+                      style={ { fontSize: "14px" } }
                     >
                       ادخل بلد المنشأ مثال: مصر
                     </p>
@@ -494,35 +494,35 @@ function AddNewCat() {
                 </div>
                 <hr
                   className="mt-5"
-                  style={{ position: "relative", zIndex: "-1" }}
+                  style={ { position: "relative", zIndex: "-1" } }
                 />
                 <div>
                   <p className="fw-bolder">تحميل الصور : </p>
-                  <p style={{ color: "gray" }}>
+                  <p style={ { color: "gray" } }>
                     يجب تحميل صورة واحدة على الاقل <br />
-                    الصورة الاولى تظهر كصورة خارجية{" "}
+                    الصورة الاولى تظهر كصورة خارجية{ " " }
                   </p>
                 </div>
                 <input
                   type="file"
                   name="uploaded_images"
                   multiple
-                  onChange={(e) => {
+                  onChange={ (e) => {
                     // Convert FileList to an array before setting it in Formik
                     const filesArray = Array.from(e.target.files);
                     setFieldValue("uploaded_images", filesArray);
-                  }}
+                  } }
                 />
 
                 <div className="form-group">
                   <label className="mt-4 mb-2 d-block">
-                    تحميل فيديو المنتج (اختياري) :{" "}
+                    تحميل فيديو المنتج (اختياري) :{ " " }
                   </label>
                   <input
                     type="file"
                     name="product_video"
                     accept="video/*"
-                    onChange={(e) =>
+                    onChange={ (e) =>
                       setFieldValue("product_video", e.target.files[0])
                     }
                   />
@@ -535,7 +535,7 @@ function AddNewCat() {
                 <div className="text-center mt-4">
                   <button
                     type="submit"
-                    style={{
+                    style={ {
                       margin: "0px 200px 0px 0px",
                       border: "0px",
                       height: "50px",
@@ -545,55 +545,55 @@ function AddNewCat() {
                       color: "#fff",
                       backgroundColor: "#260701",
                       fontWeight: "bolder",
-                    }}
-                    disabled={loading}
+                    } }
+                    disabled={ loading }
                   >
-                    {loading ? "جاري التحميل..." : "إضافة المنتج"}
+                    { loading ? "جاري التحميل..." : "إضافة المنتج" }
                   </button>
                 </div>
               </Form>
-            )}
+            ) }
           </Formik>
         </>
-      )}
-      {showModal && (
-        <Modal isOpen={showModal}>
-          <div style={{ padding: "20px", width: "400px" }}>
+      ) }
+      { showModal && (
+        <Modal isOpen={ showModal }>
+          <div style={ { padding: "20px", width: "400px" } }>
             <div className="text-center">
               <img
                 src="/assets/images/success-achievement-award-medal-winner-svgrepo-com 1.png"
                 alt="success"
-                width={'130px'}
+                width={ '130px' }
               />
             </div>
             <div>
               <p className="text-center fw-bolder mt-4">تم اضافة هذا المنتج بنجاح</p>
               <div className="text-center">
                 <button
-                className="mt-2"
-                  onClick={() => navigate("/HomePage/AllCats")}
-                  style={{
+                  className="mt-2"
+                  onClick={ () => navigate("/HomePage/AllCats") }
+                  style={ {
                     border: "0px",
                     height: "50px",
                     width: "300px",
                     borderRadius: "10px",
                     color: "#fff",
                     backgroundColor: "#260701",
-                  }}
+                  } }
                 >
-                  {loading
+                  { loading
                     ? "جاري التحميل..."
-                    : "العودة الي صفحة جميع المنتجات"}
+                    : "العودة الي صفحة جميع المنتجات" }
                 </button>
               </div>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
 
-      {showModalError && (
-        <Modal isOpen={showModalError}>
-          <div style={{ padding: "20px" }}>
+      { showModalError && (
+        <Modal isOpen={ showModalError }>
+          <div style={ { padding: "20px" } }>
             <div className="text-center">
               <img
                 src="/assets/images/material-symbols_sms-failed-outline-rounded.png"
@@ -605,22 +605,22 @@ function AddNewCat() {
                 حدث خطأ أثناء اضافة هذا النتج !
               </p>
               <button
-                onClick={() => navigate("/HomePage/AllCats")}
-                style={{
+                onClick={ () => navigate("/HomePage/AllCats") }
+                style={ {
                   border: "0px",
                   height: "50px",
                   width: "300px",
                   borderRadius: "10px",
                   color: "#fff",
                   backgroundColor: "#260701",
-                }}
+                } }
               >
-                {loading ? "جاري التحميل..." : "العودة الي صفحة جميع المنتجات"}
+                { loading ? "جاري التحميل..." : "العودة الي صفحة جميع المنتجات" }
               </button>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
     </div>
   );
 }

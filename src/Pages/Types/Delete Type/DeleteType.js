@@ -9,7 +9,7 @@ function DeleteType({ id, onDelete }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://104.248.251.235:8080/categories/${id}/`,
+        `https://api.amgadfurniture.com/categories/${id}/`,
         {
           method: "DELETE",
           headers: {
@@ -18,7 +18,7 @@ function DeleteType({ id, onDelete }) {
           },
         }
       );
-  
+
       if (response.ok) {
         setLoading(false);
         setShowModal(false);
@@ -35,27 +35,27 @@ function DeleteType({ id, onDelete }) {
       console.error(error);
     }
   };
-  
+
   return (
     <div>
       <p
         className="mb-0 text-danger fw-bolder"
-        style={{ cursor: "pointer", border: "none" }}
-        onClick={() => setShowModal(true)}
+        style={ { cursor: "pointer", border: "none" } }
+        onClick={ () => setShowModal(true) }
       >
         حذف النوع
       </p>
-      {showModal && (
-        <Modal isOpen={showModal}>
+      { showModal && (
+        <Modal isOpen={ showModal }>
           <div
-            style={{
+            style={ {
               width: "400px",
               padding: "20px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-            }}
+            } }
           >
             <div>
               <img
@@ -64,14 +64,14 @@ function DeleteType({ id, onDelete }) {
                 className="mt-4"
               />
             </div>
-            <p style={{ border: "none" }} className=" fw-bolder fs-5 mt-5">
+            <p style={ { border: "none" } } className=" fw-bolder fs-5 mt-5">
               هل أنت متأكد من حذف هذا النوع
             </p>
             <div className="d-flex flex-column align-items-center justify-content-center">
               <button
                 className="mt-3"
-                onClick={handleDelete}
-                style={{
+                onClick={ handleDelete }
+                style={ {
                   width: "300px",
                   border: "none",
                   borderRadius: "10px",
@@ -79,25 +79,25 @@ function DeleteType({ id, onDelete }) {
                   color: "#fff",
                   backgroundColor: "#cb0b0b",
                   fontWeight: "bolder",
-                }}
+                } }
               >
-                {loading ? "جاري  التحميل...." : "نعم  , حذف "}
+                { loading ? "جاري  التحميل...." : "نعم  , حذف " }
               </button>
               <button
-                style={{
+                style={ {
                   border: "none",
                   fontWeight: "bolder",
                   marginTop: "10px",
                   backgroundColor: "transparent",
-                }}
-                onClick={() => setShowModal(false)}
+                } }
+                onClick={ () => setShowModal(false) }
               >
                 الغاء
               </button>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
     </div>
   );
 }

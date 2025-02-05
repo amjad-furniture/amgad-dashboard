@@ -13,7 +13,7 @@ function AllTypes() {
       setLoading(true);
       try {
         const response = await fetch(
-          "http://104.248.251.235:8080/categories/",
+          "https://api.amgadfurniture.com/categories/",
           {
             method: "GET",
             headers: {
@@ -45,14 +45,14 @@ function AllTypes() {
     <div className="alltypesContainer">
       <div
         className="d-flex align-items-center"
-        style={{
+        style={ {
           backgroundColor: "#F5F5DC",
           border: "1px solid lightgray",
           borderRadius: "30px",
           padding: "0px 20px 0px 20px",
           width: "200px",
           height: "45px",
-        }}
+        } }
       >
         <svg
           width="25"
@@ -97,26 +97,26 @@ function AllTypes() {
 
         <p className="mt-3 me-2 ms-2 fw-bolder">جميع الانواع</p>
       </div>
-      {error ? (
+      { error ? (
         <p
           className="text-danger"
-          style={{
+          style={ {
             textAlign: "center",
             fontSize: "30px",
             margin: "100px 350px ",
             fontFamily: "Amiri",
-          }}
+          } }
         >
           حدث خطأ أثناء تحميل البيانات
         </p>
       ) : loading ? (
         <p
-          style={{
+          style={ {
             textAlign: "center",
             fontSize: "30px",
             margin: "100px 350px ",
             fontFamily: "Amiri",
-          }}
+          } }
         >
           جاري تحميل البيانات....
         </p>
@@ -135,29 +135,29 @@ function AllTypes() {
               </tr>
             </thead>
             <tbody>
-              {category.map((category, index) => (
-                <tr key={index}>
-                  <td className="pb-4">{index + 1}</td>
-                  <td className="pb-4">{category.name}</td>
+              { category.map((category, index) => (
+                <tr key={ index }>
+                  <td className="pb-4">{ index + 1 }</td>
+                  <td className="pb-4">{ category.name }</td>
                   <td className="text-center pb-4 position-relative">
                     <img
                       src="/assets/images/Group 6356159.png"
                       alt="options"
-                      style={{ cursor: "pointer" }}
-                      onClick={() =>
+                      style={ { cursor: "pointer" } }
+                      onClick={ () =>
                         setOptions(options === category.id ? null : category.id)
                       }
                     />
                     <div>
-                      {options === category.id && (
+                      { options === category.id && (
                         <div
                           className="position-absolute showOptions"
-                          style={{ zIndex: "1" }}
+                          style={ { zIndex: "1" } }
                         >
                           <p
                             className="fw-bolder p-2"
-                            style={{ cursor: "pointer" }}
-                            onClick={() =>
+                            style={ { cursor: "pointer" } }
+                            onClick={ () =>
                               navigate("/HomePage/EditType", {
                                 state: category,
                               })
@@ -168,24 +168,24 @@ function AllTypes() {
 
                           <p
                             className="fw-bolder p-2 "
-                            style={{ cursor: "pointer" }}
-                            onClick={() =>
+                            style={ { cursor: "pointer" } }
+                            onClick={ () =>
                               navigate(`/HomePage/AllTypes/${category.id}/`)
                             }
                           >
                             عرض المنتجات الخاصة بهذا النوع
                           </p>
-                          <DeleteType id={category.id} />
+                          <DeleteType id={ category.id } />
                         </div>
-                      )}
+                      ) }
                     </div>
                   </td>
                 </tr>
-              ))}
+              )) }
             </tbody>
           </table>
         </div>
-      )}
+      ) }
     </div>
   );
 }

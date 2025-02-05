@@ -15,7 +15,7 @@ function RelatedProducts() {
       setLoading(true);
       try {
         const response = await fetch(
-          `http://104.248.251.235:8080/category/${id}/products/`,
+          `https://api.amgadfurniture.com/category/${id}/products/`,
           {
             method: "GET",
             headers: {
@@ -53,26 +53,26 @@ function RelatedProducts() {
   };
   return (
     <div className="relatedProductContainer">
-      {error ? (
+      { error ? (
         <p
           className="text-danger"
-          style={{
+          style={ {
             textAlign: "center",
             fontSize: "30px",
             margin: "100px 350px ",
             fontFamily: "Amiri",
-          }}
+          } }
         >
           حدث خطأ أثناء تحميل البيانات....
         </p>
       ) : loading ? (
         <p
-          style={{
+          style={ {
             textAlign: "center",
             fontSize: "30px",
             margin: "100px 350px ",
             fontFamily: "Amiri",
-          }}
+          } }
         >
           جاري تحميل البيانات.....
         </p>
@@ -84,36 +84,36 @@ function RelatedProducts() {
         <>
           <div
             className="d-flex align-items-center"
-            style={{
+            style={ {
               backgroundColor: "#F5F5DC",
               border: "1px solid lightgray",
               borderRadius: "30px",
               padding: "0px 20px 0px 20px",
               width: "200px",
               height: "45px",
-            }}
+            } }
           >
-            {[
+            { [
               ...new Map(
                 product.map((item) => [item.category?.id, item.category])
               ).values(),
             ].map(
               (category, index) =>
                 category && (
-                  <div className="d-flex align-items-center" key={index}>
+                  <div className="d-flex align-items-center" key={ index }>
                     <img
-                      src={`http://104.248.251.235:8080${category.icon}`}
+                      src={ `https://api.amgadfurniture.com${category.icon}` }
                       alt="icon"
                       width="20px"
                       className="ms-2"
                     />
-                    <p className="mt-3 me-2 ms-2 fw-bolder">{category.name}</p>
+                    <p className="mt-3 me-2 ms-2 fw-bolder">{ category.name }</p>
                   </div>
                 )
-            )}
+            ) }
           </div>
 
-          {/* product table */}
+          {/* product table */ }
           <div className="tableContainer mt-5">
             <table className="table">
               <thead>
@@ -128,56 +128,56 @@ function RelatedProducts() {
                 </tr>
               </thead>
               <tbody>
-                {product.map((product, index) => (
-                  <tr key={index}>
-                    <td className="pb-4">{index + 1}</td>
-                    <td className="pb-4">{product.name}</td>
+                { product.map((product, index) => (
+                  <tr key={ index }>
+                    <td className="pb-4">{ index + 1 }</td>
+                    <td className="pb-4">{ product.name }</td>
                     <td className="pb-4">
-                      {product.category && product.category.name}
+                      { product.category && product.category.name }
                     </td>
-                    <td className="pb-4">{product.stock}</td>
-                    <td className="pb-4">{product.price}</td>
+                    <td className="pb-4">{ product.stock }</td>
+                    <td className="pb-4">{ product.price }</td>
                     <td className="pb-4">
-                      {product.is_active === true ? "معروض" : "مخفي"}
+                      { product.is_active === true ? "معروض" : "مخفي" }
                     </td>
                     <td className="text-center position-relative">
                       <img
                         src="/assets/images/Group 6356159.png"
                         alt="options"
-                        style={{ cursor: "pointer" }}
-                        onClick={() =>
+                        style={ { cursor: "pointer" } }
+                        onClick={ () =>
                           setOptions(options === product.id ? null : product.id)
                         }
                       />
-                      {options === product.id && (
+                      { options === product.id && (
                         <div className="allOptions p-3">
                           <p
                             className="fw-bolder pb-2"
-                            style={{ textAlign: "right", cursor: "pointer" }}
-                            onClick={() =>
+                            style={ { textAlign: "right", cursor: "pointer" } }
+                            onClick={ () =>
                               navigate("/HomePage/Edit", { state: { product } })
                             }
                           >
                             تعديل البيانات
                           </p>
                           <HideCat
-                            id={product.id}
-                            isActive={product.is_active}
-                            onStatusChange={(newStatus) =>
+                            id={ product.id }
+                            isActive={ product.is_active }
+                            onStatusChange={ (newStatus) =>
                               updateProductStatus(product.id, newStatus)
                             }
                           />
-                          <DeleteCat id={product.id} />
+                          <DeleteCat id={ product.id } />
                         </div>
-                      )}
+                      ) }
                     </td>
                   </tr>
-                ))}
+                )) }
               </tbody>
             </table>
           </div>
         </>
-      )}
+      ) }
     </div>
   );
 }

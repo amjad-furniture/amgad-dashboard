@@ -10,7 +10,7 @@ function Logout() {
   const confirmLogout = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://104.248.251.235:8080/auth/logout", {
+      const response = await fetch("https://api.amgadfurniture.com/auth/logout", {
         method: "POST",
         headers: {
           accept: "*/*",
@@ -40,15 +40,15 @@ function Logout() {
         <img src="/assets/images/logout.png" alt="logout" width="20px" className="me-3" />
         <p
           className="fw-bolder text-danger ps-3 pe-3 pt-3"
-          onClick={() => setShowModal(true)}
-          style={{ cursor: "pointer" }}
+          onClick={ () => setShowModal(true) }
+          style={ { cursor: "pointer" } }
         >
           تسجيل الخروج
         </p>
       </div>
 
-      {showModal && (
-        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+      { showModal && (
+        <Modal isOpen={ showModal } onClose={ () => setShowModal(false) }>
           <div className="ps-5 pe-5 pt-5 pb-4">
             <div className="text-center">
               <img src="/assets/images/logout-2-svgrepo-com.png" alt="logout" />
@@ -61,7 +61,7 @@ function Logout() {
             <div className="d-flex flex-column align-items-center justify-content-center">
               <button
                 className="fw-bolder mt-2"
-                style={{
+                style={ {
                   backgroundColor: "#FF5C5C",
                   border: "none",
                   color: "#fff",
@@ -69,22 +69,22 @@ function Logout() {
                   padding: "10px",
                   width: "300px",
                   borderRadius: "10px",
-                }}
-                onClick={confirmLogout}
+                } }
+                onClick={ confirmLogout }
               >
-                {loading ? "جاري التحميل....." : "نعم تسجيل الخروج"}
+                { loading ? "جاري التحميل....." : "نعم تسجيل الخروج" }
               </button>
               <button
                 className="mt-4 fw-bolder"
-                style={{ backgroundColor: "transparent", border: "none" }}
-                onClick={() => setShowModal(false)}
+                style={ { backgroundColor: "transparent", border: "none" } }
+                onClick={ () => setShowModal(false) }
               >
                 الغاء
               </button>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
     </div>
   );
 }

@@ -10,7 +10,7 @@ function HideCat({ id, isActive, onStatusChange }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://104.248.251.235:8080/products/${id}/`,
+        `https://api.amgadfurniture.comcom/products/${id}/`,
         {
           method: "PATCH",
           headers: {
@@ -43,18 +43,18 @@ function HideCat({ id, isActive, onStatusChange }) {
     <div>
       <p
         className="fw-bolder pb-2"
-        style={{
+        style={ {
           textAlign: "right",
           borderBottom: "1px solid lightgray",
           cursor: "pointer",
-        }}
-        onClick={() => setShowModal(true)}
+        } }
+        onClick={ () => setShowModal(true) }
       >
-        {isActive ? "اخفاء" : "عرض المنتج"}
+        { isActive ? "اخفاء" : "عرض المنتج" }
       </p>
-      {showModal && (
-        <Modal isOpen={showModal}>
-          <div style={{ width: "380px", padding: "30px" }}>
+      { showModal && (
+        <Modal isOpen={ showModal }>
+          <div style={ { width: "380px", padding: "30px" } }>
             <div className="text-center">
               <img
                 src="/assets/images/material-symbols_sms-failed-outline-rounded.png"
@@ -62,12 +62,12 @@ function HideCat({ id, isActive, onStatusChange }) {
               />
             </div>
             <p className="border-0 fw-bolder mt-4 mb-4 fs-5">
-              {isActive ? "هل تريد اخفاء المنتج؟" : "هل تريد عرض المنتج؟"}
+              { isActive ? "هل تريد اخفاء المنتج؟" : "هل تريد عرض المنتج؟" }
             </p>
             <div className="d-flex flex-column align-items-center justify-content-center">
               <button
-                onClick={handleToggleStatus}
-                style={{
+                onClick={ handleToggleStatus }
+                style={ {
                   width: "300px",
                   border: "none",
                   borderRadius: "10px",
@@ -75,25 +75,25 @@ function HideCat({ id, isActive, onStatusChange }) {
                   color: "#fff",
                   backgroundColor: "#260701",
                   fontWeight: "bolder",
-                }}
+                } }
               >
-                {loading ? "جاري التحميل...." : isActive ? "نعم , اخفاء" : "نعم , عرض المنتج"}
+                { loading ? "جاري التحميل...." : isActive ? "نعم , اخفاء" : "نعم , عرض المنتج" }
               </button>
               <button
-                onClick={() => setShowModal(false)}
-                style={{
+                onClick={ () => setShowModal(false) }
+                style={ {
                   border: "none",
                   fontWeight: "bolder",
                   marginTop: "10px",
                   backgroundColor: "transparent",
-                }}
+                } }
               >
                 الغاء
               </button>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
     </div>
   );
 }

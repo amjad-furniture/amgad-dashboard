@@ -25,7 +25,7 @@ function NewPassword() {
     };
     try {
       const response = await fetch(
-        "http://104.248.251.235:8080/auth/change-password",
+        "https://api.amgadfurniture.com/auth/change-password",
         {
           method: "POST",
           headers: {
@@ -73,9 +73,9 @@ function NewPassword() {
           </div>
           <div className="">
             <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={handleSubmit}
+              initialValues={ initialValues }
+              validationSchema={ validationSchema }
+              onSubmit={ handleSubmit }
             >
               <Form className="form">
                 <div className="position-relative">
@@ -85,33 +85,33 @@ function NewPassword() {
                   <Field
                     name="current_password"
                     id="current_password"
-                    type={show ? "text" : "password"}
+                    type={ show ? "text" : "password" }
                     placeholder="كلمة السر الحالية"
                   />
                   <span
-                    style={{
+                    style={ {
                       position: "absolute",
                       top: 50,
                       left: 25,
                       cursor: "pointer",
-                    }}
-                    onClick={() => setShow(!show)}
+                    } }
+                    onClick={ () => setShow(!show) }
                   >
-                    {!show ? (
+                    { !show ? (
                       <img
                         src="/assets/images/close eye.png"
                         alt="hide password"
-                        width={"20px"}
-                        height={"20px"}
+                        width={ "20px" }
+                        height={ "20px" }
                       />
                     ) : (
                       <img
                         src="/assets/images/open eye.png"
                         alt="show password"
-                        width={"20px"}
-                        height={"20px"}
+                        width={ "20px" }
+                        height={ "20px" }
                       />
-                    )}
+                    ) }
                   </span>
                   <ErrorMessage
                     name="current_password"
@@ -126,33 +126,33 @@ function NewPassword() {
                   <Field
                     name="new_password"
                     id="new_password"
-                    type={confirm ? "text" : "password"}
+                    type={ confirm ? "text" : "password" }
                     placeholder="كلمة السر الجديدة"
                   />
                   <span
-                    style={{
+                    style={ {
                       position: "absolute",
                       top: 50,
                       left: 25,
                       cursor: "pointer",
-                    }}
-                    onClick={() => setConfirm(!confirm)}
+                    } }
+                    onClick={ () => setConfirm(!confirm) }
                   >
-                    {!confirm ? (
+                    { !confirm ? (
                       <img
                         src="/assets/images/close eye.png"
                         alt="hide password"
-                        width={"20px"}
-                        height={"20px"}
+                        width={ "20px" }
+                        height={ "20px" }
                       />
                     ) : (
                       <img
                         src="/assets/images/open eye.png"
                         alt="show password"
-                        width={"20px"}
-                        height={"20px"}
+                        width={ "20px" }
+                        height={ "20px" }
                       />
-                    )}
+                    ) }
                   </span>
                   <ErrorMessage
                     name="new_password"
@@ -164,9 +164,9 @@ function NewPassword() {
                   <button
                     className="mt-5"
                     type="submit"
-                    style={{ cursor: "pointer" }}
+                    style={ { cursor: "pointer" } }
                   >
-                    {loading ? "جاري التحميل ...." : "حفظ"}
+                    { loading ? "جاري التحميل ...." : "حفظ" }
                   </button>
                 </div>
               </Form>
@@ -183,37 +183,37 @@ function NewPassword() {
           />
         </div>
       </aside>
-      {/* modal */}
-      {showModal && (
-        <Modal isOpen={showModal}>
-          <div style={{ borderRadius: "10px" }} className="pt-5 ps-5 pe-5 pb-4">
+      {/* modal */ }
+      { showModal && (
+        <Modal isOpen={ showModal }>
+          <div style={ { borderRadius: "10px" } } className="pt-5 ps-5 pe-5 pb-4">
             <div className="text-center mb-5">
               <img src="/assets/images/Group (2).png" alt="logo" />
             </div>
             <div>
               <h4 className="text-center fw-bolder">
                 تم تغير كلمة السر
-                <br /> الخاصة بك بنجاح{" "}
+                <br /> الخاصة بك بنجاح{ " " }
               </h4>
               <p className="text-center mt-5 fw-bolder">
                 استخدم كلمة السر الجديدة عند تسجيل الدخول
                 <br /> مرة اخرى في المرات القادمة
               </p>
               <div>
-                <button className="login-btn mt-4" onClick={()=>navigate('/')}>تسجيل الدخول</button>
+                <button className="login-btn mt-4" onClick={ () => navigate('/') }>تسجيل الدخول</button>
               </div>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
 
-      {modalError && (
-        <Modal isOpen={modalError}>
-          <div style={{ width: "400px" }}>
+      { modalError && (
+        <Modal isOpen={ modalError }>
+          <div style={ { width: "400px" } }>
             <div>
               <button
                 className="close-modal"
-                onClick={() => setModalError(false)}
+                onClick={ () => setModalError(false) }
               >
                 X
               </button>
@@ -229,7 +229,7 @@ function NewPassword() {
             </div>
           </div>
         </Modal>
-      )}
+      ) }
     </div>
   );
 }

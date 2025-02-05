@@ -13,7 +13,7 @@ function AllMessages() {
     async function getAllMessages() {
       setLoading(true);
       try {
-        const response = await fetch("http://104.248.251.235:8080/support/", {
+        const response = await fetch("https://api.amgadfurniture.com/support/", {
           method: "GET",
           headers: {
             accept: "application/json",
@@ -43,14 +43,14 @@ function AllMessages() {
     <div className="allmessagesContainer">
       <div
         className="d-flex align-items-center"
-        style={{
+        style={ {
           backgroundColor: "#F5F5DC",
           border: "1px solid lightgray",
           borderRadius: "30px",
           padding: "0px 20px 0px 20px",
           width: "200px",
           height: "45px",
-        }}
+        } }
       >
         <svg
           width="24"
@@ -100,26 +100,26 @@ function AllMessages() {
         <p className="mt-3 me-2 ms-2 fw-bolder">جميع الرسائل</p>
       </div>
 
-      {error ? (
+      { error ? (
         <p
           className="text-danger"
-          style={{
+          style={ {
             textAlign: "center",
             fontSize: "30px",
             margin: "100px 350px",
             fontFamily: "Amiri",
-          }}
+          } }
         >
           حدث خطأ أثناء تحميل البيانات...
         </p>
       ) : loading ? (
         <p
-          style={{
+          style={ {
             textAlign: "center",
             fontSize: "30px",
             margin: "100px 350px",
             fontFamily: "Amiri",
-          }}
+          } }
         >
           جاري تحميل البيانات....
         </p>
@@ -139,49 +139,49 @@ function AllMessages() {
               </tr>
             </thead>
             <tbody>
-              {allMessages.map((message, index) => (
-                <tr key={message.id}>
-                  <td className="pb-4">{index + 1}</td>
-                  <td className="pb-4">{message.name}</td>
-                  <td className="pb-4">{message.phone_number}</td>
-                  <td className="pb-4">{message.email}</td>
+              { allMessages.map((message, index) => (
+                <tr key={ message.id }>
+                  <td className="pb-4">{ index + 1 }</td>
+                  <td className="pb-4">{ message.name }</td>
+                  <td className="pb-4">{ message.phone_number }</td>
+                  <td className="pb-4">{ message.email }</td>
                   <td
                     className="pb-4"
-                    onClick={() =>
+                    onClick={ () =>
                       navigate(`/HomePage/AllMessages/${message.id}/`)
                     }
-                    style={{ cursor: "pointer" }}
+                    style={ { cursor: "pointer" } }
                   >
-                    {message.message}
+                    { message.message }
                   </td>
                   <td className="text-center position-relative">
                     <img
                       src="/assets/images/Group 6356159.png"
                       alt="options"
-                      onClick={() =>
+                      onClick={ () =>
                         setSelectedMessageId(
                           selectedMessageId === message.id ? null : message.id
                         )
                       }
-                      style={{ cursor: "pointer" }}
+                      style={ { cursor: "pointer" } }
                     />
                     <div>
-                      {selectedMessageId === message.id && (
+                      { selectedMessageId === message.id && (
                         <div className="delete-option">
                           <DeleteMessage
-                            id={message.id}
-                            onDelete={handleDeleteMessage}
+                            id={ message.id }
+                            onDelete={ handleDeleteMessage }
                           />
                         </div>
-                      )}
+                      ) }
                     </div>
                   </td>
                 </tr>
-              ))}
+              )) }
             </tbody>
           </table>
         </div>
-      )}
+      ) }
     </div>
   );
 }

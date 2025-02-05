@@ -31,7 +31,7 @@ function AddNewType() {
     formData.append("icon", values.icon);
 
     try {
-      const response = await fetch("http://104.248.251.235:8080/categories/", {
+      const response = await fetch("https://api.amgadfurniture.com/categories/", {
         method: "POST",
         headers: {
           accept: "application/json",
@@ -65,14 +65,14 @@ function AddNewType() {
     <div className="addTypeContainer">
       <div
         className="d-flex align-items-center"
-        style={{
+        style={ {
           backgroundColor: "#F5F5DC",
           border: "1px solid lightgray",
           borderRadius: "30px",
           padding: "0px 20px 0px 20px",
           width: "200px",
           height: "43px",
-        }}
+        } }
       >
         <p className="mt-3 fw-bolder">+</p>
         <p className="mt-3 me-2 ms-2 fw-bolder"> اضافة نوع جديد</p>
@@ -80,11 +80,11 @@ function AddNewType() {
 
       <div className="addTypeForm">
         <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          initialValues={ initialValues }
+          validationSchema={ validationSchema }
+          onSubmit={ handleSubmit }
         >
-          {({ setFieldValue }) => (
+          { ({ setFieldValue }) => (
             <Form>
               <div className="d-flex">
                 <div className="ms-5">
@@ -99,7 +99,7 @@ function AddNewType() {
                   />
                   <p
                     className="text-secondary mt-2"
-                    style={{ fontSize: "14px" }}
+                    style={ { fontSize: "14px" } }
                   >
                     مثل : موديرن
                   </p>
@@ -117,7 +117,7 @@ function AddNewType() {
                   type="file"
                   id="icon"
                   accept="image/*"
-                  onChange={(event) =>
+                  onChange={ (event) =>
                     setFieldValue("icon", event.currentTarget.files[0])
                   }
                 />
@@ -128,22 +128,22 @@ function AddNewType() {
                 />
               </div>
               <div className="text-center mt-5">
-                <button className="saveBtn" type="submit" disabled={loading}>
-                  {loading ? "جاري التحميل..." : "حفظ"}
+                <button className="saveBtn" type="submit" disabled={ loading }>
+                  { loading ? "جاري التحميل..." : "حفظ" }
                 </button>
               </div>
             </Form>
-          )}
+          ) }
         </Formik>
       </div>
-      {showModal && (
-        <Modal isOpen={showModal}>
-          <div style={{ padding: "20px", width: "400px" }}>
+      { showModal && (
+        <Modal isOpen={ showModal }>
+          <div style={ { padding: "20px", width: "400px" } }>
             <div className="text-center">
               <img
                 src="/assets/images/success-achievement-award-medal-winner-svgrepo-com 1.png"
                 alt="success"
-                width={"130px"}
+                width={ "130px" }
               />
             </div>
             <div>
@@ -152,27 +152,27 @@ function AddNewType() {
               </p>
               <div className="text-center mt-2">
                 <button
-                  onClick={() => navigate("/HomePage/AllTypes")}
-                  style={{
+                  onClick={ () => navigate("/HomePage/AllTypes") }
+                  style={ {
                     border: "0px",
                     height: "50px",
                     width: "300px",
                     borderRadius: "10px",
                     color: "#fff",
                     backgroundColor: "#260701",
-                  }}
+                  } }
                 >
-                  {loading ? "جاري التحميل..." : "العودة الي صفحة جميع الأنواع"}
+                  { loading ? "جاري التحميل..." : "العودة الي صفحة جميع الأنواع" }
                 </button>
               </div>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
 
-      {showModalError && (
-        <Modal isOpen={showModalError}>
-          <div style={{ padding: "20px" }}>
+      { showModalError && (
+        <Modal isOpen={ showModalError }>
+          <div style={ { padding: "20px" } }>
             <div className="text-center">
               <img
                 src="/assets/images/material-symbols_sms-failed-outline-rounded.png"
@@ -184,22 +184,22 @@ function AddNewType() {
                 حدث خطأ أثناء اضافة هذا النوع !
               </p>
               <button
-                onClick={() => navigate("/HomePage/AllTypes")}
-                style={{
+                onClick={ () => navigate("/HomePage/AllTypes") }
+                style={ {
                   border: "0px",
                   height: "50px",
                   width: "300px",
                   borderRadius: "10px",
                   color: "#fff",
                   backgroundColor: "#260701",
-                }}
+                } }
               >
-                {loading ? "جاري التحميل..." : "العودة الي صفحة جميع الأنواع"}
+                { loading ? "جاري التحميل..." : "العودة الي صفحة جميع الأنواع" }
               </button>
             </div>
           </div>
         </Modal>
-      )}
+      ) }
     </div>
   );
 }
