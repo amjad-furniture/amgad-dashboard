@@ -72,9 +72,9 @@ function Login() {
         </div>
         <div className="loginformContainer">
           <div>
-            <h2 className="text-center fw-bolder">اهلا بك</h2>
-            <p className="text-center fw-bolder mt-3">
-              قم بإدخال بريدك الالكتروني وكلمة السر
+            <h2 className="text-center fw-bolder mb-4">اهلا بك</h2>
+            <p className="text-center fw-bolder mt-3 text-muted">
+              قم بإدخال اسم المستخدم وكلمة السر
               <br /> لتسجيل الدخول
             </p>
           </div>
@@ -90,7 +90,7 @@ function Login() {
                     اسم المستخدم
                   </label>
                   <Field
-                    placeholder="البريد الالكتروني*"
+                    placeholder=" اسم المستخدم"
                     name="username"
                     id="username"
                   />
@@ -112,13 +112,7 @@ function Login() {
                     placeholder="كلمة السر"
                   />
                   <span
-                    style={ {
-                      position: "absolute",
-                      top: "58px",
-                      left: "10px",
-                      transform: "translateY(-50%)",
-                      cursor: "pointer",
-                    } }
+                    className="password-toggle"
                     onClick={ () => setShow(!show) }
                   >
                     { !show ? (
@@ -145,8 +139,7 @@ function Login() {
                 </div>
                 <div className="d-flex justify-content-end">
                   <p
-                    className="mt-3"
-                    style={ { cursor: "pointer" } }
+                    className="mt-3 forgot-password"
                     onClick={ () => navigate("/NewPassword") }
                   >
                     هل تريد تغير كلمة السر؟

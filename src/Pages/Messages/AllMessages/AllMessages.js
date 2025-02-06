@@ -8,7 +8,11 @@ function AllMessages() {
   const [error, setError] = useState(false);
   const [allMessages, setAllMessages] = useState([]);
   const [selectedMessageId, setSelectedMessageId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const messagesPerPage = 10;
   const navigate = useNavigate();
+
   useEffect(() => {
     async function getAllMessages() {
       setLoading(true);
@@ -38,6 +42,18 @@ function AllMessages() {
   const handleDeleteMessage = (deletedId) => {
     setAllMessages(allMessages.filter((message) => message.id !== deletedId));
   };
+
+  const filteredMessages = allMessages.filter(message =>
+    message.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    message.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    message.message.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const indexOfLastMessage = currentPage * messagesPerPage;
+  const indexOfFirstMessage = indexOfLastMessage - messagesPerPage;
+  const currentMessages = filteredMessages.slice(indexOfFirstMessage, indexOfLastMessage);
+
+  const totalPages = Math.ceil(filteredMessages.length / messagesPerPage);
 
   return (
     <div className="allmessagesContainer">
@@ -101,88 +117,102 @@ function AllMessages() {
       </div>
 
       { error ? (
-        <p
-          className="text-danger"
-          style={ {
-            textAlign: "center",
-            fontSize: "30px",
-            margin: "100px 350px",
-            fontFamily: "Amiri",
-          } }
-        >
-          حدث خطأ أثناء تحميل البيانات...
-        </p>
+        <div className="alert alert-danger text-center" role="alert">
+          حدث خطأ أثناء تحميل البيانات... الرجاء المحاولة مرة أخرى
+        </div>
       ) : loading ? (
-        <p
-          style={ {
-            textAlign: "center",
-            fontSize: "30px",
-            margin: "100px 350px",
-            fontFamily: "Amiri",
-          } }
-        >
-          جاري تحميل البيانات....
-        </p>
+        <div className="spinner" />
       ) : allMessages.length === 0 ? (
         <p className="fw-bolder no-message">لا يوجد رسائل في الوقت الحالي</p>
       ) : (
-        <div className="mt-5 tableContainer">
-          <table className="table">
-            <thead>
-              <tr>
-                <th className="pb-4">م</th>
-                <th className="pb-4">الاسم</th>
-                <th className="pb-4">رقم التليفون</th>
-                <th className="pb-4">البريد الالكتروني</th>
-                <th className="pb-4">الرسالة</th>
-                <th className="pb-4 text-center">خيارات</th>
-              </tr>
-            </thead>
-            <tbody>
-              { allMessages.map((message, index) => (
-                <tr key={ message.id }>
-                  <td className="pb-4">{ index + 1 }</td>
-                  <td className="pb-4">{ message.name }</td>
-                  <td className="pb-4">{ message.phone_number }</td>
-                  <td className="pb-4">{ message.email }</td>
-                  <td
-                    className="pb-4"
-                    onClick={ () =>
-                      navigate(`/HomePage/AllMessages/${message.id}/`)
-                    }
-                    style={ { cursor: "pointer" } }
-                  >
-                    { message.message }
-                  </td>
-                  <td className="text-center position-relative">
-                    <img
-                      src="/assets/images/Group 6356159.png"
-                      alt="options"
+        <>
+          <div className="search-container">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="البحث عن رسالة..."
+              value={ searchTerm }
+              onChange={ (e) => setSearchTerm(e.target.value) }
+            />
+          </div>
+
+          <div className="mt-5 tableContainer">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th className="pb-4">م</th>
+                  <th className="pb-4">الاسم</th>
+                  <th className="pb-4">رقم التليفون</th>
+                  <th className="pb-4">البريد الالكتروني</th>
+                  <th className="pb-4">الرسالة</th>
+                  <th className="pb-4 text-center">خيارات</th>
+                </tr>
+              </thead>
+              <tbody>
+                { currentMessages.map((message, index) => (
+                  <tr key={ message.id } className="message-row">
+                    <td className="pb-4">{ index + 1 }</td>
+                    <td className="pb-4">{ message.name }</td>
+                    <td className="pb-4">{ message.phone_number }</td>
+                    <td className="pb-4">{ message.email }</td>
+                    <td
+                      className="pb-4"
                       onClick={ () =>
-                        setSelectedMessageId(
-                          selectedMessageId === message.id ? null : message.id
-                        )
+                        navigate(`/HomePage/AllMessages/${message.id}/`)
                       }
                       style={ { cursor: "pointer" } }
-                    />
-                    <div>
-                      { selectedMessageId === message.id && (
-                        <div className="delete-option">
-                          <DeleteMessage
-                            id={ message.id }
-                            onDelete={ handleDeleteMessage }
-                          />
-                        </div>
-                      ) }
-                    </div>
-                  </td>
-                </tr>
-              )) }
-            </tbody>
-          </table>
-        </div>
+                    >
+                      { message.message }
+                    </td>
+                    <td className="text-center position-relative">
+                      <img
+                        src="/assets/images/Group 6356159.png"
+                        alt="options"
+                        onClick={ () =>
+                          setSelectedMessageId(
+                            selectedMessageId === message.id ? null : message.id
+                          )
+                        }
+                        style={ { cursor: "pointer" } }
+                      />
+                      <div>
+                        { selectedMessageId === message.id && (
+                          <div className="delete-option">
+                            <DeleteMessage
+                              id={ message.id }
+                              onDelete={ handleDeleteMessage }
+                            />
+                          </div>
+                        ) }
+                      </div>
+                    </td>
+                  </tr>
+                )) }
+              </tbody>
+            </table>
+          </div>
+
+          <div className="pagination">
+            <button
+              className="pagination-button"
+              onClick={ () => setCurrentPage(prev => Math.max(prev - 1, 1)) }
+              disabled={ currentPage === 1 }
+            >
+              السابق
+            </button>
+            <span>{ currentPage } من { totalPages }</span>
+            <button
+              className="pagination-button"
+              onClick={ () => setCurrentPage(prev => Math.min(prev + 1, totalPages)) }
+              disabled={ currentPage === totalPages }
+            >
+              التالي
+            </button>
+          </div>
+        </>
       ) }
     </div>
   );
 }
+
 export default AllMessages;
