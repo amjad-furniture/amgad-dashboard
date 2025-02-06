@@ -12,13 +12,13 @@ function AddNewType() {
   const initialValues = {
     name: "",
     description: "",
-    icon: null,
+    icon: undefined,
   };
 
   const validationSchema = Yup.object({
     name: Yup.string().required("يرجي ادخال النوع"),
     description: Yup.string(),
-    icon: Yup.mixed().required("يرجي تحميل أيقونة"),
+    icon: Yup.mixed().nullable(),
   });
 
   const handleSubmit = async (values) => {
@@ -28,7 +28,9 @@ function AddNewType() {
     const formData = new FormData();
     formData.append("name", values.name);
     formData.append("description", values.description);
-    formData.append("icon", values.icon);
+    if (values.icon) {
+      formData.append("icon", values.icon);
+    }
 
     try {
       const response = await fetch("https://api.amgadfurniture.com/categories/", {

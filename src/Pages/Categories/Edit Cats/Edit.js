@@ -64,24 +64,16 @@ function EditProductForm() {
     }));
   };
 
-  const validateForm = () => {
-    if (!productData.name || !productData.price || !productData.category_id) {
-      alert("الرجاء ملء جميع الحقول الإلزامية");
-      return false;
-    }
-    return true;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) return;
-
-    const updatedProductData = {
-      ...productData,
-      price: parseFloat(productData.price),
-      stock: parseInt(productData.stock),
-    };
+    // Only include fields that have been changed
+    const changedFields = {};
+    Object.keys(productData).forEach(key => {
+      if (productData[key] !== state.product[key]) {
+        changedFields[key] = productData[key];
+      }
+    });
 
     try {
       setLoading(true);
@@ -92,17 +84,15 @@ function EditProductForm() {
       }
 
       const formData = new FormData();
-      Object.keys(updatedProductData).forEach((key) => {
-        if (key === "uploaded_images") {
-          updatedProductData.uploaded_images.forEach((file) => {
+      Object.keys(changedFields).forEach((key) => {
+        if (key === "uploaded_images" && changedFields.uploaded_images?.length > 0) {
+          Array.from(changedFields.uploaded_images).forEach((file) => {
             formData.append("uploaded_images", file);
           });
-        } else if (key === "product_video") {
-          if (updatedProductData.product_video) {
-            formData.append("product_video", updatedProductData.product_video); // Append the video file
-          }
+        } else if (key === "product_video" && changedFields.product_video) {
+          formData.append("product_video", changedFields.product_video);
         } else {
-          formData.append(key, updatedProductData[key]);
+          formData.append(key, changedFields[key]);
         }
       });
 

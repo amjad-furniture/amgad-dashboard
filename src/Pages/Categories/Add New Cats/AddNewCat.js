@@ -36,34 +36,24 @@ function AddNewCat() {
 
   const validationSchema = Yup.object({
     name: Yup.string().required("يرجي ادخال الأسم"),
-    description: Yup.string(),
+    description: Yup.string().nullable(),
     price: Yup.number().required("يرجي ادخال السعر"),
-    color: Yup.string().required("يرجي ادخال اللون"),
-    length_cm: Yup.number().required("يرجي ادخال الطول بالأرقام فقط"),
-    width_cm: Yup.number().required("يرجي ادخال العرض بالأرقام فقط"),
-    height_cm: Yup.number().required("يرجي ادخال الأرتفاع بالأرقام فقط"),
-    depth_cm: Yup.number().required("يرجي ادخال السمك بالأرقام فقط"),
-    stock: Yup.number().required("يرجي ادخال عدد القطع بالأرقام فقط"),
-    country_of_origin: Yup.string().required("يردي اخال بلد المنشأ"),
-    wood_material: Yup.string().required("يردي ادخال خامة الخشب"),
-    fabric_material: Yup.string().required("يرجي ادخال مادة القماش "),
-    upholstery_material: Yup.string().required("يرجي ادخال مادة التنجيد"),
-    warranty_months: Yup.string().required(
-      "يرجي ادخال عدد أشهر الضمان بالأرقام فقط"
-    ),
+    color: Yup.string().nullable(),
+    length_cm: Yup.number().nullable(),
+    width_cm: Yup.number().nullable(),
+    height_cm: Yup.number().nullable(),
+    depth_cm: Yup.number().nullable(),
+    stock: Yup.number().nullable(),
+    country_of_origin: Yup.string().nullable(),
+    wood_material: Yup.string().nullable(),
+    fabric_material: Yup.string().nullable(),
+    upholstery_material: Yup.string().nullable(),
+    warranty_months: Yup.string().nullable(),
     category_id: Yup.string().required("يرجي اختيار نوع المنتج"),
     uploaded_images: Yup.array()
-      .of(Yup.mixed().required("يرجي تحميل الصور"))
-      .min(1, "يرجي تحميل صورة واحدة على الأقل"),
-    // product_video: Yup.mixed()
-    //   .test(
-    //     "is-valid-video",
-    //     "يرجى تحميل فيديو صحيح",
-    //     (value) =>
-    //       value instanceof File ||
-    //       (typeof value === "string" && value.startsWith("http"))
-    //   )
-    //   .nullable(),
+      .min(1, "يرجي تحميل صورة واحدة على الأقل")
+      .required("يرجي تحميل الصور"),
+    product_video: Yup.mixed().nullable(),
     is_active: Yup.boolean(),
   });
 
@@ -503,16 +493,22 @@ function AddNewCat() {
                     الصورة الاولى تظهر كصورة خارجية{ " " }
                   </p>
                 </div>
-                <input
-                  type="file"
-                  name="uploaded_images"
-                  multiple
-                  onChange={ (e) => {
-                    // Convert FileList to an array before setting it in Formik
-                    const filesArray = Array.from(e.target.files);
-                    setFieldValue("uploaded_images", filesArray);
-                  } }
-                />
+                <div className="form-group">
+                  <input
+                    type="file"
+                    name="uploaded_images"
+                    multiple
+                    onChange={ (e) => {
+                      const filesArray = Array.from(e.target.files);
+                      setFieldValue("uploaded_images", filesArray);
+                    } }
+                  />
+                  <ErrorMessage
+                    name="uploaded_images"
+                    component="div"
+                    className="text-danger fw-bolder error-message"
+                  />
+                </div>
 
                 <div className="form-group">
                   <label className="mt-4 mb-2 d-block">

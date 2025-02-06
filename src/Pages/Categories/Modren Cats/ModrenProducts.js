@@ -25,7 +25,10 @@ function ModrenProducts() {
         const result = await response.json();
         if (response.ok) {
           const ModrenProducts = result.data.filter(
-            (product) => product.category && product.category.name === "Modern"
+            (product) =>
+              product.category &&
+              (product.category.name === "modern" ||
+                product.category.name === "نيو كلاسيك")
           );
           setLoading(false);
           setProducts(ModrenProducts);
