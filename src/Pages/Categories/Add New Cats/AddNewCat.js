@@ -93,7 +93,7 @@ function AddNewCat() {
     }
 
     try {
-      const response = await fetch("https://api.amgadfurniture.comcom/products/", {
+      const response = await fetch("https://api.amgadfurniture.com/products/", {
         method: "POST",
         headers: {
           Authorization: localStorage.getItem("access token"),

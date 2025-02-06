@@ -10,7 +10,7 @@ function HideCat({ id, isActive, onStatusChange }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://api.amgadfurniture.comcom/products/${id}/`,
+        `https://api.amgadfurniture.com/products/${id}/`,
         {
           method: "PATCH",
           headers: {

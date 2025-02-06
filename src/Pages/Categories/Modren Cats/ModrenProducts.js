@@ -15,7 +15,7 @@ function ModrenProducts() {
     async function getAllProducts() {
       setLoading(true);
       try {
-        const response = await fetch("https://api.amgadfurniture.comcom/products/", {
+        const response = await fetch("https://api.amgadfurniture.com/products/", {
           method: "GET",
           headers: {
             accept: "application/json",

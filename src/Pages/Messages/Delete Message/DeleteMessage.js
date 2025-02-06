@@ -8,7 +8,7 @@ function DeleteMessage({ id, onDelete }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://api.amgadfurniture.comcom/support/${id}/`,
+        `https://api.amgadfurniture.com/support/${id}/`,
         {
           method: "DELETE",
           headers: {

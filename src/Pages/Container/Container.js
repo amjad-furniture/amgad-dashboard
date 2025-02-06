@@ -8,7 +8,7 @@ function Container() {
     async function fetchDashboardStatus() {
       try {
         const response = await fetch(
-          "https://api.amgadfurniture.comcom/dashboard-stats/",
+          "https://api.amgadfurniture.com/dashboard-stats/",
           {
             method: "GET",
             headers: {
