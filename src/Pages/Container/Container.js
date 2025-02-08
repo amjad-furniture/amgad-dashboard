@@ -58,14 +58,14 @@ function Container() {
         {
           icon: "/assets/images/Group 6356138 (1).png",
           value: status.category_stats && status.category_stats.find(
-            (category) => category.category_name === "Modern"
+            (category) => category.category_name === "نيو كلاسيك"
           )?.product_count,
           label: "نيو كلاسيك"
         },
         {
           icon: "/assets/images/Group 6356136 (1).png",
           value: status.category_stats && status.category_stats.find(
-            (category) => category.category_name === "classic"
+            (category) => category.category_name === "كلاسيك"
           )?.product_count,
           label: "كلاسيكي"
         },
