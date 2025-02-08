@@ -40,6 +40,20 @@ function AllCats() {
     getAllProducts();
   }, []);
 
+  // Add useEffect for click outside handling
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (options && !event.target.closest('.options-container')) {
+        setOptions(null);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [options]);
+
   const updateProductStatus = (id, newStatus) => {
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
@@ -170,17 +184,29 @@ function AllCats() {
                   <td>{ product.stock }</td>
                   <td>{ product.price }</td>
                   <td>{ product.is_active ? "معروض" : "مخفي" }</td>
-                  <td className="text-center position-relative">
-                    <img
-                      src="/assets/images/Group 6356159.png"
-                      alt="options"
-                      style={ { cursor: "pointer" } }
-                      onClick={ () =>
-                        setOptions(options === product.id ? null : product.id)
-                      }
-                    />
+                  <td className="text-center position-relative options-container">
+                    <button
+                      className="icon-button"
+                      onClick={ (e) => {
+                        e.stopPropagation();
+                        setOptions(options === product.id ? null : product.id);
+                      } }
+                      aria-label="Options"
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                      </svg>
+                    </button>
                     { options === product.id && (
-                      <div className="allOptions p-3">
+                      <div
+                        className="allOptions p-3"
+                        onClick={ (e) => e.stopPropagation() }
+                      >
                         <p
                           className="fw-bolder pb-2"
                           style={ { textAlign: "right", cursor: "pointer" } }

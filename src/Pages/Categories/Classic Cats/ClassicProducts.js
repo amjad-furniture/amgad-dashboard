@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HideCat from "../Hide Cat/HideCat";
 import DeleteCat from "../Delete Cats/DeleteCat";
+import './ClassicProducts.css';
+
 
 function ClassicProducts() {
   const [products, setProducts] = useState([]);
@@ -45,6 +47,20 @@ function ClassicProducts() {
     getAllProducts();
   }, []);
 
+  // Add useEffect for click outside handling
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (options && !event.target.closest('.options-container')) {
+        setOptions(null);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [options]);
+
   const updateProductStatus = (id, newStatus) => {
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
@@ -69,17 +85,7 @@ function ClassicProducts() {
   return (
     <div className="allproductsContainer">
       <div className="d-flex align-items-center justify-content-between">
-        <div
-          className="d-flex align-items-center"
-          style={ {
-            backgroundColor: "#F5F5DC",
-            border: "1px solid lightgray",
-            borderRadius: "30px",
-            padding: "0px 20px 0px 20px",
-            width: "200px",
-            height: "45px",
-          } }
-        >
+        <div className="d-flex align-items-center category-badge">
           <img
             src="/assets/images/sofa-livingroom-svgrepo-com.png"
             alt="product classic"
@@ -107,26 +113,11 @@ function ClassicProducts() {
       </div>
 
       { error ? (
-        <p
-          className="text-danger"
-          style={ {
-            textAlign: "center",
-            fontSize: "30px",
-            margin: "100px 350px ",
-            fontFamily: "Amiri",
-          } }
-        >
+        <p className="text-danger loading-error-message">
           حدث خطأ أثناء تحميل البيانات.....
         </p>
       ) : loading ? (
-        <p
-          style={ {
-            textAlign: "center",
-            fontSize: "30px",
-            margin: "100px 350px ",
-            fontFamily: "Amiri",
-          } }
-        >
+        <p className="loading-error-message">
           جاري تحميل البيانات.....
         </p>
       ) : products.length === 0 ? (
@@ -158,20 +149,31 @@ function ClassicProducts() {
                   <td>{ product.stock }</td>
                   <td>{ product.price }</td>
                   <td>{ product.is_active ? "معروض" : "مخفي" }</td>
-                  <td className="text-center position-relative">
-                    <img
-                      src="/assets/images/Group 6356159.png"
-                      alt="options"
-                      style={ { cursor: "pointer" } }
-                      onClick={ () =>
-                        setOptions(options === product.id ? null : product.id)
-                      }
-                    />
+                  <td className="text-center position-relative options-container">
+                    <button
+                      className="icon-button"
+                      onClick={ (e) => {
+                        e.stopPropagation();
+                        setOptions(options === product.id ? null : product.id);
+                      } }
+                      aria-label="Options"
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                      </svg>
+                    </button>
                     { options === product.id && (
-                      <div className="allOptions p-3">
+                      <div
+                        className="allOptions options-dropdown"
+                        onClick={ (e) => e.stopPropagation() }
+                      >
                         <p
-                          className="fw-bolder pb-2"
-                          style={ { textAlign: "right", cursor: "pointer" } }
+                          className="fw-bolder edit-button"
                           onClick={ () =>
                             navigate("/HomePage/EditProductForm", { state: { product } })
                           }

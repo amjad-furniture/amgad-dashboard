@@ -1,0 +1,60 @@
+.allproductsContainer {
+  /* Add any container styles if needed */
+}
+
+.category-badge {
+  background-color: #F5F5DC;
+  border: 1px solid lightgray;
+  border-radius: 30px;
+  padding: 0 20px;
+  width: 200px;
+  height: 45px;
+}
+
+.loading-error-message {
+  text-align: center;
+  font-size: 30px;
+  margin: 100px 350px;
+  font-family: "Amiri";
+}
+
+.options-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 1000;
+}
+
+.edit-button {
+  text-align: right;
+  cursor: pointer;
+}
+
+.tableContainer {
+  width: 100%;
+  overflow: visible;  /* Prevents scrolling */
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;  /* Gives equal width to columns */
+}
+
+.table td, .table th {
+  white-space: normal;  /* Allows text to wrap */
+  word-wrap: break-word;
+  padding: 8px;
+}
+
+.options-container {
+  position: relative;
+}
+
+.allOptions {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  min-width: 150px;
+} 

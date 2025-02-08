@@ -2,18 +2,40 @@
   padding: 130px 50px;
   font-family: Tajawal;
 }
-.showOptions{
+
+.options-container {
+  position: relative;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #666;
+}
+
+.icon-button:hover {
+  color: #333;
+}
+
+.showOptions {
   background-color: #fff;
   border-radius: 10px;
   border: 1px solid lightgray;
   width: 300px;
   padding: 10px;
   left: 175px;
+  position: absolute;
+  z-index: 1;
 }
-.showOptions p{
+
+.showOptions p {
   text-align: right !important;
   border-bottom: 1px solid lightgray;
+  margin: 0;
 }
-.showOptions p:last-child{
+
+.showOptions p:last-child {
   border-bottom: none;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./AllTypes.css";
 import DeleteType from "../Delete Type/DeleteType";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ function AllTypes() {
   const [error, setError] = useState(false);
   const [options, setOptions] = useState(false);
   const navigate = useNavigate();
+  const optionsRef = useRef(null);
   useEffect(() => {
     async function fetchProducts() {
       setLoading(true);
@@ -41,6 +42,20 @@ function AllTypes() {
     }
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
+        setOptions(null);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="alltypesContainer">
       <div
@@ -139,46 +154,53 @@ function AllTypes() {
                 <tr key={ index }>
                   <td className="pb-4">{ index + 1 }</td>
                   <td className="pb-4">{ category.name }</td>
-                  <td className="text-center pb-4 position-relative">
-                    <img
-                      src="/assets/images/Group 6356159.png"
-                      alt="options"
-                      style={ { cursor: "pointer" } }
-                      onClick={ () =>
-                        setOptions(options === category.id ? null : category.id)
-                      }
-                    />
-                    <div>
-                      { options === category.id && (
-                        <div
-                          className="position-absolute showOptions"
-                          style={ { zIndex: "1" } }
+                  <td className="text-center pb-4 position-relative options-container">
+                    <button
+                      className="icon-button"
+                      onClick={ (e) => {
+                        e.stopPropagation();
+                        setOptions(options === category.id ? null : category.id);
+                      } }
+                      aria-label="Options"
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                      </svg>
+                    </button>
+                    { options === category.id && (
+                      <div
+                        className="showOptions"
+                        ref={ optionsRef }
+                        onClick={ (e) => e.stopPropagation() }
+                      >
+                        <p
+                          className="fw-bolder p-2"
+                          style={ { cursor: "pointer" } }
+                          onClick={ () =>
+                            navigate("/HomePage/EditType", {
+                              state: category,
+                            })
+                          }
                         >
-                          <p
-                            className="fw-bolder p-2"
-                            style={ { cursor: "pointer" } }
-                            onClick={ () =>
-                              navigate("/HomePage/EditType", {
-                                state: category,
-                              })
-                            }
-                          >
-                            تعديل البيانات
-                          </p>
-
-                          <p
-                            className="fw-bolder p-2 "
-                            style={ { cursor: "pointer" } }
-                            onClick={ () =>
-                              navigate(`/HomePage/AllTypes/${category.id}/`)
-                            }
-                          >
-                            عرض المنتجات الخاصة بهذا النوع
-                          </p>
-                          <DeleteType id={ category.id } />
-                        </div>
-                      ) }
-                    </div>
+                          تعديل البيانات
+                        </p>
+                        <p
+                          className="fw-bolder p-2"
+                          style={ { cursor: "pointer" } }
+                          onClick={ () =>
+                            navigate(`/HomePage/AllTypes/${category.id}/`)
+                          }
+                        >
+                          عرض المنتجات الخاصة بهذا النوع
+                        </p>
+                        <DeleteType id={ category.id } />
+                      </div>
+                    ) }
                   </td>
                 </tr>
               )) }
