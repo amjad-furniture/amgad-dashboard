@@ -37,7 +37,7 @@ function AddNewCat() {
   const validationSchema = Yup.object({
     name: Yup.string().required("يرجي ادخال الأسم"),
     description: Yup.string().nullable(),
-    price: Yup.number().required("يرجي ادخال السعر"),
+    price: Yup.number().nullable(),
     color: Yup.string().nullable(),
     length_cm: Yup.number().nullable(),
     width_cm: Yup.number().nullable(),
