@@ -213,7 +213,6 @@ function EditProductForm() {
               name="price"
               value={ productData.price }
               onChange={ handleChange }
-              required
             />
             <p className="text-secondary mt-2" style={ { fontSize: "14px" } }>
               ارقام فقط
